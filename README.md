@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📰 AGC News — Frontend Internship Challenge
 
-## Getting Started
+AGC News is a simplified news platform built as part of a practical frontend internship challenge. It mimics a real-world content delivery platform using modern frontend technologies like **Next.js App Router**, **TypeScript**, **Tailwind CSS**, **SCSS**, **Redux Toolkit**, and **React Query**.
 
-First, run the development server:
+---
+
+## 🚀 Live Demo
+
+👉 [https://agc-news.vercel.app](https://agc-news-nelson-erege.vercel.app)
+
+---
+
+## 📸 Screenshots
+
+_Coming soon..._
+
+---
+
+## 🧰 Tech Stack
+
+- **Framework:** [Next.js (App Router)](https://nextjs.org/docs/app/building-your-application)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS + SCSS modules
+- **State Management:** Redux Toolkit (for bookmarks)
+- **Data Fetching:** React Query (for API integration and caching)
+- **Package Manager:** [pnpm](https://pnpm.io)
+
+---
+
+## 🗂️ Features
+
+- ✅ Fully responsive landing page with:
+  - Top Stories
+  - Editor's Picks
+  - Featured Stories
+- ✅ Horizontal category tab navigation
+- ✅ Dynamic story detail page (`/stories/[id]`)
+- ✅ Bookmark system (toggleable, persistent via localStorage)
+- ✅ Bookmark page (`/bookmarks`) to view saved stories
+- ✅ Client-side search filter
+- ✅ Skeleton loading states and basic error handling
+
+---
+
+## 🛠️ Installation & Setup
+
+### 1. Clone the repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+git clone https://github.com/your-username/agc-news.git
+cd agc-news
+pnpm install
 pnpm dev
-# or
-bun dev
+```
+### 2. Build for Production
+
+```bash
+pnpm run build
+pnpm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Author
+**Nelson Erege**<br>
+Frontend Developer
