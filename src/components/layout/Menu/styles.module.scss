@@ -1,0 +1,40 @@
+.sectionList {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    height: 1px;
+    left: 0;
+    right: 0;
+    bottom: -2rem;
+    background-color: black;
+    opacity: 0.5;
+  }
+}
+
+.link {
+  margin: 1rem;
+  font-size: 1.4rem;
+  color: black;
+  background-image: linear-gradient(
+    120deg,
+    transparent 0%,
+    transparent 50%,
+    orange 50%
+  );
+  background-size: 220%;
+  transition: all 0.5s;
+
+  &:hover,
+  &:active {
+    background-position: 100%;
+    color: white;
+  }
+  a {
+    &:link,
+    &:visited {
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+  }
+}

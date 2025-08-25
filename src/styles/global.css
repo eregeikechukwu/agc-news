@@ -1,0 +1,53 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-euclide: var(--font-euclide);
+  --color-news-red: #f52a32;
+  --background-color-red: #f52a32;
+  --background-color-muted: #f6f6f6;
+  --spacing-padding-general-x: 2.88rem;
+  --color-purple-agc: #813d97;
+  --nav-height: 4.3rem;
+  --nav-height-mobile: 3.5rem;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+  font-family: var(--font-euclide);
+  max-width: 100vw;
+  min-height: 100vh;
+}
+.html {
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  max-width: 1398px;
+  margin: 0 auto;
+}
+
+html {
+  min-height: 100vh;
+  font-size: 90%; /* 14.4px*/
+}

@@ -1,0 +1,222 @@
+.bottom_shadow {
+  position: relative;
+  overflow: hidden;
+  &::after {
+    content: "";
+    height: 40%;
+    width: 110%;
+    position: absolute;
+    bottom: -6px;
+    left: -10px;
+    right: 0;
+    background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.83) 15%,
+      rgba(0, 0, 0, 0) 77%
+    );
+    filter: blur(0.63rem);
+  }
+}
+.story_description {
+  width: 100%;
+  z-index: 20;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.category_button {
+  position: absolute;
+  top: 1.06rem;
+  left: 1.06rem;
+  width: 7.56rem;
+  font-size: 0.8rem;
+  height: 2.5rem;
+  color: white;
+  cursor: pointer;
+  border-radius: 40rem;
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.12);
+  box-sizing: border-box;
+  border: 0.06rem solid #999999;
+  -webkit-backdrop-filter: blur(0.31rem);
+  backdrop-filter: blur(0.31rem);
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+}
+
+.center_child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes toastFadeIn {
+  0% {
+    transform: translateX(100%);
+  }
+  10% {
+    transform: translateX(-30px);
+  }
+  90% {
+    transform: translateX(-30px);
+  }
+
+  100% {
+    display: none;
+    transform: translateX(100%);
+  }
+}
+
+.toast-fade {
+  animation: toastFadeIn 5s ease-out;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.searchEnter {
+  transition: bottom 0.7s ease-out, width 0.5s ease-out 0.4s,
+    opacity 0.5s ease-out 0.4s;
+}
+.searchOut {
+  transition: bottom 0.7s ease-out 0.4s, width 0.5s ease-out,
+    opacity 0.5s ease-out 0.2s;
+}
+
+.imageEffect {
+  position: relative;
+  overflow: hidden;
+
+  & > * {
+    transition: all 0.5s ease-out;
+  }
+
+  &::after {
+    content: "";
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 30%;
+    bottom: 0;
+    background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.83) 15%,
+      rgba(0, 0, 0, 0) 77%
+    );
+    transition: all 0.5s ease-out;
+  }
+
+  &:hover {
+    & > * {
+      transform: scale(1.1);
+    }
+
+    &::after {
+      opacity: 1;
+    }
+  }
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  transition: transform 0.5s;
+  transform: translateY(calc(-1 * var(--nav-height)));
+}
+
+.sticky-down {
+  transform: translateY(0);
+}
+
+// top-[1.06rem] category_button  w-[7.56rem] left-[1.06rem] absolute text-[0.8rem] text-white h-10
+
+// Nav animation
+@keyframes slideIn {
+  from {
+    // transform: translateX(-100%);
+    left: -100%;
+  }
+  to {
+    // transform: translateX(-5px);
+    left: -5px;
+  }
+}
+@keyframes slideOut {
+  0% {
+    // transform: translateX(-5px);
+    left: -5px;
+  }
+  5% {
+    left: 0;
+  }
+  100% {
+    left: -100%;
+    display: none;
+  }
+}
+
+.nav-enter {
+  animation: slideIn 0.4s ease-out forwards;
+}
+.nav-exit {
+  animation: slideOut 0.7s cubic-bezier(1, 0.02, 0.17, 1.08);
+}
+// the forwards keyword is used to keep the final state of the animation
+@keyframes fade-in {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  1% {
+    transform: scale(1);
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.backdrop-enter {
+  // animation: fade-in 0.4s ease-out;
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.5s cubic-bezier(0.85, 0, 0.15, 1) 0.01s, transform 0.01s;
+}
+
+.backdrop-exit {
+  // animation: fade-out 0.7s cubic-bezier(0.85, 0, 0.15, 1) forwards;
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 0.5s cubic-bezier(0.85, 0, 0.15, 1), transform 0s 0.45s;
+}
+
+.searchShadow {
+  box-shadow: 0px 0px 9px rgba(255, 255, 255, 0.7);
+}
+
+//Hide scrolbar
+.no-scrollbar::-webkit-scrollbar{
+  display: none;
+}

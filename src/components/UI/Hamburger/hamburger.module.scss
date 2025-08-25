@@ -1,0 +1,40 @@
+.hamburger {
+  cursor: pointer;
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate((-50%, -50%));
+  height: 2rem;
+  width: 2.8rem;
+  z-index: 500;
+
+  input {
+    display: none;
+
+    &:checked + .hamburgers {
+      > span {
+        background-color: black;
+      }
+      > span:first-child {
+        transform: rotate(45deg) scaleX(1.4);
+      }
+      > span:nth-child(2) {
+        opacity: 0;
+      }
+      > span:nth-child(3) {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+  div {
+    & span {
+      background-color: white;
+      transition: all 0.4s ease;
+      transform-origin: left;
+      border-radius: 2rem;
+      height: 15%;
+    }
+  }
+}
