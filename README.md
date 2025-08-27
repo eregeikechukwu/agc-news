@@ -1,6 +1,5 @@
 # 📰 AGC News — Frontend Internship Challenge
 
-
 AGC News is a simplified news platform built as part of a practical frontend internship challenge. It mimics a real-world content delivery platform using modern frontend technologies like **Next.js App Router**, **TypeScript**, **Tailwind CSS**, **SCSS**, **Redux Toolkit**, and **React Query**.
 
 ---
@@ -10,6 +9,7 @@ AGC News is a simplified news platform built as part of a practical frontend int
 👉 [https://agc-news.vercel.app](https://agc-news-nelson-erege.vercel.app)
 
 ---
+
 
 ## 📸 Screenshots
 
