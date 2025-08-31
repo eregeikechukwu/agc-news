@@ -10,7 +10,6 @@ AGC News is a simplified news platform built as part of a practical frontend int
 
 ---
 
-
 ## 📸 Screenshots
 
 _Coming soon..._
@@ -26,7 +25,9 @@ _Coming soon..._
 - **Data Fetching:** React Query (for API integration and caching)
 - **Package Manager:** [pnpm](https://pnpm.io)
 
+
 ---
+
 
 ## 🗂️ Features
 
