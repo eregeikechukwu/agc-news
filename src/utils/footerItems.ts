@@ -2,7 +2,7 @@ export const footerItems = [
   [
     { name: "Home", href: "/" },
     { name: "Africa", href: "/categories/africa" },
-    { name: "Politics", href: "/categories/politics" },
+    { name: "Politics", href: "/categories/Politics" },
   ],
   [
     { name: "Business", href: "/categories/business" },
@@ -10,8 +10,7 @@ export const footerItems = [
     { name: "Health", href: "/categories/health" },
   ],
   [
-    { name: "\u2003", href: "/" },
-    // the unicode character is for empty spacing
+    { name: "Tech", href: "/categories/tech" },
     { name: "Opinion", href: "/categories/opinion" },
     { name: "Videos", href: "/categories/videos" },
   ],

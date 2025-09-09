@@ -22,7 +22,7 @@ import useMappedCategoryKey from "@/src/hooks/useMappedCategoryKey";
 import { useAds } from "@/src/app/features/ads/useAds";
 import AlsoReading from "../../sections/AlsoReading";
 import StorySkeleton from "../../skeletons/StorySkeleton";
-import { MissedStories } from "../../sections";
+import { LatestNews, MissedStories } from "../../sections";
 import OtherStoriesSkeleton from "../../skeletons/OtherStoriesSkeleton";
 import { useTooltipsHandler } from "@/src/utils/tooltipsHandler";
 import { useImage } from "@/src/hooks/useImage";
@@ -31,7 +31,7 @@ import { toggleBookmark } from "@/src/lib/slices/bookmarkSlice";
 
 export function StoryPage({ storyId }: StoryIdProp) {
   const { data, isPending, error, isError } = useStoryById(storyId);
-  const { categoryKey } = useMappedCategoryKey(data?.category.category_name);
+  const { categoryKey } = useMappedCategoryKey(data?.category?.category_name || '');
   const { data: otherStories, isPending: isPagedPending } = useCategoryStories(
     categoryKey || "",
     1,
@@ -64,9 +64,9 @@ export function StoryPage({ storyId }: StoryIdProp) {
         <>
           <div className="max-w-[59rem]">
             <div className="flex gap-[1.12rem]">
-              <Link href={`/categories/${data?.category.category_name}`}>
+              <Link href={`/categories/${data?.category?.category_name}`}>
                 <button className="text-[#5a5a5a]  text-[0.94rem] bg-white/10 rounded-full w-[8.06rem] h-10 border-[0.06rem] border-[#999999] cursor-pointer">
-                  {data?.category.category_name}
+                  {data?.category?.category_name}
                 </button>
               </Link>
               <button
@@ -78,7 +78,7 @@ export function StoryPage({ storyId }: StoryIdProp) {
                 Share
               </button>
             </div>
-            <h1 className="text-[2.63rem] mt-[0.8rem] leading-snug">
+            <h1 className="md:text-[2.63rem] font-semibold text-[2rem] mt-[0.8rem] leading-snug">
               {data?.title}
             </h1>
             <p className="text-[1.13rem] mt-2 text-[#5a5a5a]">
@@ -91,13 +91,13 @@ export function StoryPage({ storyId }: StoryIdProp) {
                 : ""}{" "}
               {`\u2022`} 4 minutes read
             </p>
-            <p className="text-[1.13rem] mt-2 text-[#282828]">
+            <p className="text-[1.13rem] font-medium mt-2 text-[#282828]">
               By {data?.author}
             </p>
           </div>
           {/* main story content */}
-          <div className="flex h-fit gap-[4.6rem]">
-            <div className="w-[65%]">
+          <div className="flex md:flex-row flex-col h-fit gap-[7rem] md:gap-[4.6rem]">
+            <div className="md:w-[65%] w-full">
               {/* Banner image */}
               <div className="max-w-full overflow-hidden relative h-[32rem] mt-5">
                 <Image
@@ -158,7 +158,7 @@ export function StoryPage({ storyId }: StoryIdProp) {
                 <OtherStoriesSkeleton />
               ) : (
                 <div>
-                  <h1 className="text-[1.13rem]">TOP STORIES</h1>
+                  <h1 className="text-[1.13rem] font-bold">TOP STORIES</h1>
                   <div className="mt-6 ">
                     {otherStories?.data.slice(0, 4).map((story) => (
                       <OthersGridItem story={story} key={story.id} />
@@ -167,7 +167,7 @@ export function StoryPage({ storyId }: StoryIdProp) {
                 </div>
               )}
               {/* Ads */}
-              <div className="mt-14 flex flex-1 gap-20 justify-between h-full flex-col ">
+              <div className="md:mt-14 mt-10 flex flex-1 md:gap-20 gap-5 justify-between h-full md:flex-col ">
                 {ads.map((ad, index) => (
                   <Image
                     key={index}
@@ -185,6 +185,7 @@ export function StoryPage({ storyId }: StoryIdProp) {
       )}
       {/* People are also reading */}
       <AlsoReading />
+
       {/*missed stories*/}
       <MissedStories />
     </section>

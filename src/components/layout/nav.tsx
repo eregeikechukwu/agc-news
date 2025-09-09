@@ -8,37 +8,35 @@ import { Search, Triangle } from "lucide-react";
 import SearchBox from "../UI/Searchbox";
 import React, { memo, useEffect, useCallback, useRef, useState } from "react";
 import { useAppDispatch } from "@/src/hooks/reduxHooks";
-import { clearSearch, toggleBackdrop } from "@/src/lib/slices/appSlice";
+import {
+  clearSearch,
+  toggleBackdrop,
+  toggleSearch,
+  closeSearch,
+} from "@/src/lib/slices/appSlice";
 import { useIntersectionObserver } from "@/src/hooks/useINtersectionObserver";
 import Hamburger from "../UI/Hamburger";
 import useScreenSize from "@/src/hooks/useScreenSize";
 import Menu from "./Menu/Menu";
 import useClickOutside from "@/src/hooks/useClickOutside";
-import useLockScroll from "@/src/hooks/useLockScroll";
+import { useAppSelector } from "@/src/hooks/reduxHooks";
 
 function Nav() {
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
   const { isMobile, isTablet } = useScreenSize();
 
+  const { isSearchOpen } = useAppSelector((state) => state.app);
+
   const url = usePathname();
   const dispatch = useAppDispatch();
 
-  const lockScroll = useLockScroll();
-
   // Close search when the url changes
   useEffect(() => {
-    setIsSearchOpen(false);
+    dispatch(closeSearch());
     dispatch(clearSearch());
   }, [url]);
 
-  function toggleSearch() {
-    setIsSearchOpen((prev) => !prev);
-    dispatch(toggleBackdrop());
-
-    // lockScroll();
-  }
   const toggleMenu = useCallback(() => {
     if (!isSearchOpen) {
       //so the menu and the search wont be opne at the same time
@@ -55,7 +53,9 @@ function Nav() {
   }
 
   //close menu for mobile when outside of the menu is clicked
-  useClickOutside(isSearchOpen, toggleSearch);
+  useClickOutside(isSearchOpen, () => {
+    dispatch(toggleSearch());
+  });
 
   // Intersection observer
   useIntersectionObserver(navRef as React.RefObject<HTMLElement>);
@@ -64,7 +64,7 @@ function Nav() {
   return (
     <div
       ref={navRef}
-      className="bg-[#1B1B1B] z-200 flex lg:top-[calc(100%-var(--nav-height))] top-0 lg:bottom-0 right-0 left-0 text-white absolute text-[1.13rem]  h-18 lg:h-[var(--nav-height)] px-[0.94rem] md:px-[2.81rem]  justify-between"
+      className="bg-[#1B1B1B] z-200 flex lg:top-[calc(100%-var(--nav-height))] top-0 lg:bottom-0 right-0 left-0 text-white absolute text-[1.13rem]  h-18 lg:h-[var(--nav-height)] px-[0.94rem] sm:px-[1.7rem] md:px-[2.81rem]  justify-between"
     >
       {!(isMobile || isTablet) ? (
         <>
@@ -102,7 +102,7 @@ function Nav() {
 
               {/* Search icon */}
               <div
-                onClick={toggleSearch}
+                onClick={() => dispatch(toggleSearch())}
                 className="group  center_child relative h-9 "
               >
                 <Search className="w-[0.88rem]" />
@@ -121,10 +121,10 @@ function Nav() {
         <>
           <div className="lg:hidden  items-center justify-between  w-full flex">
             <div className="flex items-center gap-7">
-              <div className="relative">
+              <div className="center_child">
                 <Hamburger toggleMenu={toggleMenu} isMenuOpen={isMenuOpen} />
               </div>
-              <Search onClick={toggleSearch} className="" />
+              <Search onClick={() => dispatch(toggleSearch())} className="" />
               <SearchBox isSearchOpen={isSearchOpen} />
               <Logo />
             </div>

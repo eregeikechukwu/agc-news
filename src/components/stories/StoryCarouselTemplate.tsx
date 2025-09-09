@@ -3,13 +3,14 @@
 import { CategoryGroup } from "@/src/components/categories/categoryGroup";
 import H1 from "@/src/components/UI/H1";
 import PaginationTabs from "@/src/components/UI/PaginationTabs";
-import { useState } from "react";
-import LatestNewsSkeleton from "@/src/components/skeletons/LatestStoriesSkeleton";
 import { Story, StoryObject } from "@/src/lib/types/api-types";
 import ErrorFallback from "../Fallbacks/ErrorFallback";
+import { useEffect, useRef } from "react";
+import useScreenSize from "@/src/hooks/useScreenSize";
 
 export default function StoryCarouselTemplate({
   data,
+  stories,
   error,
   isPending,
   title,
@@ -17,14 +18,36 @@ export default function StoryCarouselTemplate({
   onChangePage,
 }: {
   data: StoryObject;
+  stories: Story[];
   error: Error | null;
   isPending: boolean;
   title: string;
   currentPage: number;
   onChangePage: (page: number) => void;
 }) {
+  const CarouselContainer = useRef<HTMLDivElement>(null);
+  const { isMobile, isTablet } = useScreenSize();
+
+  useEffect(() => {
+    const carousel = CarouselContainer.current;
+
+    if (!carousel) return;
+    const handleScroll = () => {
+      if (
+        carousel.scrollLeft + carousel.clientWidth >=
+        carousel.scrollWidth - 30
+      ) {
+        onChangePage(currentPage + 1);
+      }
+    };
+
+    carousel.addEventListener("scroll", handleScroll);
+
+    return () => carousel.removeEventListener("scroll", handleScroll);
+  }, [CarouselContainer, currentPage]);
+
   return (
-    <div className="my-[5.75rem]">
+    <div className="md:my-[5.75rem] my-[2.9375rem]">
       <div className="flex justify-between">
         <H1 highlight="#813D97">{title}</H1>
         <PaginationTabs
@@ -35,14 +58,14 @@ export default function StoryCarouselTemplate({
         />
       </div>
       <div className="mt-7">
-        {isPending ? (
-          <LatestNewsSkeleton />
-        ) : error ? (
+        {error ? (
           <ErrorFallback />
         ) : (
           <CategoryGroup
+            ref={CarouselContainer}
             variant="horizontal"
-            stories={(data?.data as Story[]) || []}
+            isPending={isPending}
+            stories={(stories as Story[]) || []}
           />
         )}
       </div>

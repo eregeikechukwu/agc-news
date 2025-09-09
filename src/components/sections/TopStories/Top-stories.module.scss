@@ -1,12 +1,40 @@
+@use "../../../styles/sass/abstracts/mixins" as mixins;
+@use "../../../styles/sass/abstracts/variables" as vars;
+
 .storiesgrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, auto);
   gap: 1.06rem;
 
+  @include mixins.respond-to-abs(medium) {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, auto);
+  }
   & > * {
     &:nth-child(1) {
       grid-row: 1 / 3;
+      @include mixins.respond-to-abs(medium) {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, auto);
+        margin-bottom: 1.315rem;
+      }
     }
   }
 }
+
+.storiesgridskeleton {
+  & > * {
+    &:nth-child(2) {
+      @include mixins.story-card-skeleton;
+    }
+    &:nth-child(3) {
+      @include mixins.story-card-skeleton;
+    }
+  }
+}
+//  &:nth-child(1) {
+//         div {
+//           display: none;
+//         }
+//       }

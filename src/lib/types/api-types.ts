@@ -1,5 +1,15 @@
 //  Story (news article) object
 
+export interface MainStory {
+  id: number;
+  author?: string;
+  banner_image: string;
+  description?: string;
+  title?: string;
+  created_at?: string;
+  // [key: string]: string | number; // allow flexibility in case backend sends extra fields
+}
+
 export interface Story {
   id: number;
   author?: string;
@@ -7,8 +17,14 @@ export interface Story {
   description?: string;
   title?: string;
   created_at?: string;
-  [key: string]: any; // allow flexibility in case backend sends extra fields
+  story?: MainStory;
+  category?: Category;
+  content?: string;
+
+  // [key: string]: string | number; // allow flexibility in case backend sends extra fields
 }
+
+// [key: string]: any; // allow flexibility in case backend sends extra fields
 
 export interface StoryObject {
   meta: {
@@ -47,10 +63,11 @@ export interface CategoryStoryObject {
 export interface Category {
   id: string;
   category_name: string;
+  category_id?: string; // sometimes category_id is used instead of id
   slug?: string;
   description?: string;
   image_url?: string;
-  [key: string]: any;
+  // [key: string]: string; //
 }
 
 // Generic paginated API response
@@ -84,6 +101,7 @@ export interface AppState {
   searchQuery: string;
   searchInitQuery: string;
   isBackdropVisible: boolean;
+  isSearchOpen: boolean;
 }
 
 export interface BookmarkState {

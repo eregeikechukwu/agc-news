@@ -1,6 +1,6 @@
 export default function MissedStorySkeleton() {
   return (
-    <div className="grid grid-cols-4 gap-12">
+    <div className="grid  lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-12">
       {Array.from({ length: 4 }).map((_, i) => (
         <div key={i} className="flex gap-3">
           {/* Left Dot */}
@@ -9,8 +9,8 @@ export default function MissedStorySkeleton() {
           {/* Right Text Block */}
           <div className="flex flex-col gap-3 w-full">
             {/* Title Skeleton */}
-            <div className="h-4 w-[80%] rounded skeleton_shimmer" />
-            <div className="h-4 w-[80%] rounded skeleton_shimmer" />
+            <div className="h-4 md:w-[80%] sm:w-full rounded skeleton_shimmer" />
+            <div className="h-4 md:w-[80%] sm:w-full rounded skeleton_shimmer" />
 
             {/* Tag Row */}
             <div className="flex gap-2 mt-2">

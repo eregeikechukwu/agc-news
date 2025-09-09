@@ -25,7 +25,7 @@ export default function FeaturedStories() {
       const map = new Map<string, Story[]>();
 
       items.forEach((item) => {
-        const category = item.category.category_name;
+        const category = item.category?.category_name ?? "Uncategorized";
         if (!map.has(category)) {
           map.set(category, []);
         }

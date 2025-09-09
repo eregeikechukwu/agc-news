@@ -38,7 +38,7 @@ export default function AppHeader() {
           <div className="h-[2.69rem] text-[0.94rem] text-white px-[2.12rem] flex justify-between items-center bg-[#D32C89]">
             <div className="flex gap-[1.81rem]">
               {headerItems.map((item, i) => (
-                <Link href={item.href} className="cursor-pointer" key={i}>
+                <Link key={i} href={item.path} className="cursor-pointer">
                   {item.name}
                 </Link>
               ))}

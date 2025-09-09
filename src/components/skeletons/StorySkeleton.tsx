@@ -15,7 +15,7 @@ export default function StorySkeleton() {
       </div>
 
       {/* Content Section */}
-      <div className="flex gap-[4.6rem] mt-8">
+      <div className="flex md:flex-row flex-col md:gap-[4.6rem] gap-[7rem] mt-8">
         {/* Left: Main content */}
         <div className="basis-[68%] flex flex-col gap-5">
           <div className="skeleton_shimmer w-full h-[32rem] rounded-md" />
@@ -43,7 +43,7 @@ export default function StorySkeleton() {
           {/* Top Stories */}
           <OtherStoriesSkeleton />
           {/* Ads */}
-          <div className="mt-14 flex flex-col gap-8">
+          <div className="mt-14 flex md:flex-col flex-row gap-8">
             {Array.from({ length: 2 }).map((_, i) => (
               <div
                 key={i}

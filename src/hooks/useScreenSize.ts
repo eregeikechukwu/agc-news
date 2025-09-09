@@ -7,8 +7,8 @@ export default function useScreenSize() {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-      setIsTablet(window.innerWidth < 1024 && window.innerWidth >= 768);
+      setIsMobile(window.innerWidth < 576);
+      setIsTablet(window.innerWidth < 1024 && window.innerWidth >= 576);
     };
 
     handleResize();

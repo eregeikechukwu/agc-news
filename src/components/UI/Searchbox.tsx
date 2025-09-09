@@ -26,7 +26,7 @@ export default function SearchBox({ isSearchOpen }: { isSearchOpen: boolean }) {
         isSearchOpen
           ? "lg:-bottom-15 -bottom-8 opacity-100  lg:w-160 w-[90vw]  searchEnter"
           : "bottom-15 opacity-0 w-4 searchOut"
-      } right-16  -bottom-15 w-11`}
+      } lg:right-16 right-[5vw] -bottom-15 w-11`}
     >
       {/* Search input container */}
       <div className="h-10  w-full relative rounded-full bg-[#1B1B1B]">
@@ -62,7 +62,7 @@ export default function SearchBox({ isSearchOpen }: { isSearchOpen: boolean }) {
       >
         {searchQuery.length > 1 && results.length ? (
           results.map((item, i) => (
-            <Link href={`/stories/${item.id}`}>
+            <Link key={i} href={`/stories/${item.id}`}>
               <div
                 className="text-white items-center flex justify-between gap-2 cursor-pointer text-[0.75rem] rounded-[0.3rem] hover:bg-white/10 px-2 py-1"
                 key={i}

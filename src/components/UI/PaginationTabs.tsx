@@ -26,7 +26,7 @@ export default function PaginationTabs({
           <button
             disabled={currentPage === 1}
             onClick={() => onChange(currentPage - 1)}
-            className=" disabled:opacity-40"
+            className="md:block hidden disabled:opacity-40"
           >
             <ArrowLeft className="h-4 w-4  text-black" />
             {""}
@@ -52,7 +52,7 @@ export default function PaginationTabs({
           <button
             disabled={currentPage === totalPages}
             onClick={() => onChange(currentPage + 1)}
-            className=" disabled:opacity-40"
+            className="md:block hidden disabled:opacity-40"
           >
             <ArrowRight className="h-4 w-4  text-black" />
             {""}
@@ -66,7 +66,7 @@ export default function PaginationTabs({
     return (
       <div className="flex items-center justify-center ">
         {/* showing count */}
-        <p className="text-[0.94rem]">
+        <p className="md:text-[0.94rem] text-[0.75rem]">
           Showing {start} - {end} of {adjustedTotal}
         </p>
 
@@ -77,16 +77,16 @@ export default function PaginationTabs({
             onClick={() => onChange(currentPage - 1)}
             className=" disabled:opacity-40"
           >
-            <Triangle fill="black" className="h-6 rotate-270 w-6  text-black" />
+            <Triangle fill="black" className="md:h-6 rotate-270 md:w-6 w-4 h-4  text-black" />
           </button>
 
           {/* Page numbers */}
-          <div className="flex items-center justify-center gap-2">
+          <div className="flex items-center max-sm:text-[0.75rem] justify-center gap-2">
             {pages.map((page) => (
               <button
                 key={page}
                 onClick={() => onChange(page)}
-                className={` w-[2.13rem] h-[2.13rem] rounded-[0.5rem] text-white ${
+                className={` md:w-[2.13rem] md:h-[2.13rem] w-[1.5rem] h-[1.5rem] md:rounded-[0.5rem] rounded-[0.3rem] text-white ${
                   page === currentPage
                     ? "bg-black"
                     : "bg-[#bab9b9] hover:bg-gray-500"
@@ -101,7 +101,7 @@ export default function PaginationTabs({
                 <button
                   key={totalPages}
                   onClick={() => onChange(totalPages)}
-                  className={` w-[2.13rem] h-[2.13rem] rounded-[0.5rem] text-white ${
+                  className={`  md:w-[2.13rem] md:h-[2.13rem] w-[1.5rem] h-[1.5rem] rounded-[0.5rem] text-white ${
                     totalPages === currentPage
                       ? "bg-black"
                       : "bg-[#bab9b9] hover:bg-gray-500"
@@ -122,7 +122,7 @@ export default function PaginationTabs({
           >
             <Triangle
               fill="black"
-              className="h-6 k rotate-90 w-6  text-black"
+              className="md:h-6 k rotate-90 md:w-6 w-4 h-4  text-black"
             />
           </button>
         </div>

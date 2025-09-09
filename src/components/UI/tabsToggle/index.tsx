@@ -1,4 +1,6 @@
-import React, { useEffect, useId, useMemo, useState } from "react";
+"use client";
+
+import React, { useEffect, useRef, useState } from "react";
 
 type Size = "sm" | "md" | "lg";
 
@@ -11,137 +13,64 @@ type TwoWayToggleProps = {
   className?: string;
 };
 
-const sizeMap: Record<
-  Size,
-  { py: string; text: string; pad: string; radius: string }
-> = {
-  sm: { py: "py-1", text: "text-sm", pad: "p-1", radius: "rounded-xl" },
-  md: { py: "py-2", text: "text-base", pad: "p-1.5", radius: "rounded-2xl" },
-  lg: { py: "py-3", text: "text-lg", pad: "p-2", radius: "rounded-2xl" },
-};
-
-export function TwoWayToggle({
-  options = ["Left", "Right"],
+export default function TwoWayToggle({
+  options = ["Option 1", "Option 2"],
   value,
   onChange,
   disabled = false,
   size = "md",
   className = "",
 }: TwoWayToggleProps) {
-  const [internalValue, setInternalValue] = useState<string>(
-    value ?? options[0]
-  );
-  const current = value ?? internalValue;
-  const idx = Math.max(0, options.indexOf(current));
-  const uid = useId();
+  const [highlightStyle, setHighlightStyle] = useState({ left: 0, width: 0 });
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const btnRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   useEffect(() => {
-    if (value !== undefined) return; // controlled mode
-    if (!options.includes(internalValue)) setInternalValue(options[0]);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [options.join("|")]);
+    if (!value || !btnRefs.current) return;
+    const activeIndex = options.indexOf(value);
+    const activeBtn = btnRefs.current[activeIndex];
+    if (activeBtn) {
+      const { offsetLeft, offsetWidth } = activeBtn;
+      setHighlightStyle({ left: offsetLeft, width: offsetWidth });
+    }
+  }, [value, options]);
 
-  useEffect(() => {
-    if (value !== undefined) setInternalValue(value);
-  }, [value]);
-
-  const sizes = sizeMap[size];
-
-  const select = (next: string) => {
-    if (disabled) return;
-    if (value === undefined) setInternalValue(next);
-    onChange?.(next);
-  };
-
-  const labelIds = useMemo(
-    () => options.map((_, i) => `${uid}-${i}`) as [string, string],
-    [options, uid]
-  );
+  const sizeClasses =
+    size === "sm"
+      ? "h-8 text-sm px-3"
+      : size === "lg"
+      ? "h-12 text-lg px-6"
+      : "h-10 text-base px-4";
 
   return (
     <div
-      className={[
-        "relative inline-flex w-full max-w-md select-none",
-        sizes.py,
-        sizes.pad,
-        sizes.radius,
-        "bg-gray-50 shadow-lg ring-1 ring-black/5",
-        disabled ? "opacity-60 cursor-not-allowed" : "cursor-pointer",
-        className,
-      ].join(" ")}
-      role="tablist"
-      aria-label="Two way toggle"
-      onKeyDown={(e) => {
-        if (disabled) return;
-        if (e.key === "ArrowRight" || e.key === "ArrowDown") {
-          e.preventDefault();
-          select(options[1]);
-        } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
-          e.preventDefault();
-          select(options[0]);
-        }
-      }}
+      ref={containerRef}
+      className={`relative flex gap-8 items-center rounded-full border border-gray-600 bg-[#121212] p-1 ${className}`}
     >
-      {/* Sliding indicator (CSS transition) */}
+      {/* highlight */}
       <div
-        aria-hidden
-        className={[
-          "absolute top-1 bottom-1 w-1/2 transition-transform duration-300",
-          sizes.radius,
-          "bg-white shadow-xl ring-1 ring-black/5",
-        ].join(" ")}
-        style={{ transform: `translateX(${idx * 100}%)` }}
+        style={{
+          left: `${highlightStyle.left}px`,
+          width: `${highlightStyle.width}px`,
+        }}
+        className="absolute top-1/2 h-[80%] -translate-y-1/2 rounded-full bg-gradient-to-r from-yellow-300 to-orange-600 transition-all duration-300"
       />
 
-      {/* Options */}
-      <div className="relative grid w-full grid-cols-2">
-        {options.map((opt, i) => {
-          const active = i === idx;
-          return (
-            <button
-              key={opt}
-              id={labelIds[i]}
-              role="tab"
-              aria-selected={active}
-              aria-controls={`${uid}-panel-${i}`}
-              type="button"
-              className={[
-                "z-10 flex items-center justify-center gap-2 px-3",
-                sizes.py,
-                sizes.radius,
-                sizes.text,
-                "transition-colors",
-                active ? "text-gray-900" : "text-gray-500",
-                disabled ? "pointer-events-none" : "hover:text-gray-900",
-              ].join(" ")}
-              onClick={() => select(opt)}
-            >
-              <span className="font-medium">{opt}</span>
-            </button>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
-// --- Demo usage ---
-export default function Demo() {
-  const [choice, setChoice] = useState("Monthly");
-  return (
-    <div className="min-h-[40vh] w-full grid place-items-center bg-white p-6">
-      <div className="w-[360px]">
-        <TwoWayToggle
-          options={["Monthly", "Yearly"]}
-          value={choice}
-          onChange={setChoice}
-          size="md"
-        />
-        <p className="mt-4 text-center text-sm text-gray-600">
-          Selected:{" "}
-          <span className="font-semibold text-gray-900">{choice}</span>
-        </p>
-      </div>
+      {options.map((opt, i) => (
+        <button
+          key={opt}
+          ref={(el) => {
+            btnRefs.current[i] = el;
+          }}
+          disabled={disabled}
+          onClick={() => onChange?.(opt)}
+          className={`relative z-10 cursor-pointer whitespace-nowrap rounded-full ${sizeClasses} ${
+            value === opt ? "text-white" : "text-white/50 hover:bg-[#1c1c1c]"
+          }`}
+        >
+          {opt}
+        </button>
+      ))}
     </div>
   );
 }

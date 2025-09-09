@@ -14,9 +14,9 @@ export default function OthersGridItem({
 
   return (
     <Link href={`/stories/${story.id}`}>
-      <div className="flex hover:bg-gray-100  transition-all rounded-xl p-4 gap-3 text-[1.25rem] cursor-pointer">
+      <div className="flex hover:bg-gray-100  transition-all rounded-xl md:p-4 py-3 gap-3 text-[1.25rem] cursor-pointer">
         <span className="h-[.94rem] mt-2  rounded-[0.13rem] bg-[#f52a32] w-[.94rem]"></span>
-        <p className="flex-1">{story.description}</p>
+        <p className="flex-1 font-nunito">{story.description}</p>
         {variant === "withImg" && (
           <div className="h-23 basis-42 self-end">
             <Image

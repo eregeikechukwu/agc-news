@@ -5,12 +5,15 @@ export default function Tag({
   children: React.ReactNode;
   variant?: "dark" | "light";
 }) {
-  const color = variant === "light" ? "text-[#DCDCDC]" : "text-[#5A5A5A]";
+  const color =
+    variant === "light" ? "md:text-[#DCDCDC] text-[#5A5A5A]" : "text-[#5A5A5A]";
 
   return (
     <div className="flex items-center gap-2">
       <span className="rounded-full h-[0.63rem] w-[0.63rem] bg-red "></span>
-      <p className={`text-[0.81rem] ${color}`}>{children}</p>
+      <p className={`text-[0.81rem] font-bold font-montserrat ${color}`}>
+        {children}
+      </p>
     </div>
   );
 }

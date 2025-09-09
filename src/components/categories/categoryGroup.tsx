@@ -5,11 +5,19 @@ import HorizontalGroup from "./categorygroups/HorizontalGroup";
 import { Story } from "@/src/lib/types/api-types";
 
 export function CategoryGroup({
+  ref,
   variant = "vertical",
   stories,
+  isPending,
 }: StroyCardProps) {
   if (variant === "horizontal") {
-    return <HorizontalGroup stories={stories as Story[]} />;
+    return (
+      <HorizontalGroup
+        ref={ref}
+        isPending={isPending}
+        stories={stories as Story[]}
+      />
+    );
   }
   if (variant === "large") {
     return <div>I dey come</div>;

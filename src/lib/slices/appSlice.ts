@@ -7,6 +7,7 @@ const initialState: AppState = {
   searchQuery: "",
   searchInitQuery: "",
   isBackdropVisible: false,
+  isSearchOpen: false,
 };
 
 export const appSlice = createSlice({
@@ -50,6 +51,14 @@ export const appSlice = createSlice({
     openBackdrop: (state) => {
       state.isBackdropVisible = true;
     },
+
+    toggleSearch: (state) => {
+      state.isSearchOpen = !state.isSearchOpen;
+      state.isBackdropVisible = !state.isBackdropVisible;
+    },
+    closeSearch: (state) => {
+      state.isSearchOpen = false;
+    },
   },
 });
 
@@ -59,4 +68,6 @@ export const {
   closeBackdrop,
   toggleBackdrop,
   openBackdrop,
+  toggleSearch,
+  closeSearch,
 } = appSlice.actions;

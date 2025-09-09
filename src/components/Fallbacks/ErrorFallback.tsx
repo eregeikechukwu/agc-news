@@ -1,6 +1,6 @@
 "use client";
 
-import { AlertTriangle } from "lucide-react";
+import { AlertTriangle, WifiOffIcon } from "lucide-react";
 import Button from "@/src/components/UI/button";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -19,7 +19,11 @@ export default function ErrorFallback({
 
   return (
     <div className="flex flex-col items-center justify-center py-12 px-6 text-center animate-fade-in">
-      <AlertTriangle className="text-red-500 animate-pulse w-40 h-40 mb-4" />
+      {offline ? (
+        <WifiOffIcon className="text-gray-500 animate-pulse w-40 h-40 mb-4" />
+      ) : (
+        <AlertTriangle className="text-red-500 animate-pulse w-40 h-40 mb-4" />
+      )}
       <h2 className="text-xl font-semibold text-red-600 mb-2">Oops!</h2>
       <p className="text-sm text-gray-600 max-w-md mb-6">
         {offline ? (

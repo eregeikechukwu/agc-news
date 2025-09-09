@@ -10,6 +10,7 @@ import CategoryPageSkeleton from "../../skeletons/CategoryPageSkeleton";
 import { useCategoryVitals } from "@/src/hooks/useCategoryVitals";
 import useMappedCategoryKey from "@/src/hooks/useMappedCategoryKey";
 import NoStories from "../../Fallbacks/NoStories";
+import useScreenSize from "@/src/hooks/useScreenSize";
 
 export default function CategoryStoriesFetcher({
   categoryKey,
@@ -22,6 +23,8 @@ export default function CategoryStoriesFetcher({
     categoryError,
     isCategoryError,
   } = useMappedCategoryKey(categoryKey);
+
+  const { isMobile, isTablet } = useScreenSize();
 
   const {
     latestStories,
@@ -42,7 +45,6 @@ export default function CategoryStoriesFetcher({
   if (firstError || pagedError || isFirstError || isPagedError || categoryError)
     return <ErrorFallback />;
 
-  if (!categoryId) return <NoStories title={categoryKey} />;
   if (
     isCategoryPending ||
     (isFirstPage && isFirstPending) ||
@@ -50,9 +52,29 @@ export default function CategoryStoriesFetcher({
   )
     return <CategoryPageSkeleton />;
 
+  if (!categoryId) return <NoStories title={categoryKey} />;
+
+  //Ads
+  function Ads() {
+    return (
+      <div className="lg:basis-[18.5rem] max-lg:mt-40 lg:w-fit w-full flex lg:flex-col flex-row lg:gap-10 gap-4">
+        {ads.map((src, i) => (
+          <Image
+            key={i}
+            src={src.toString() || "images/placeholder-image.jpg"}
+            width={266}
+            height={400}
+            alt={`ad-${i}`}
+            className="lg:w-full max-lg:object-contain h-auto imageEffect"
+          />
+        ))}
+      </div>
+    );
+  }
+
   return (
     <div>
-      <div className={`${styles.storygrid} mt-12`}>
+      <div className={`${styles.storygrid} md:mt-12 mt-8`}>
         {latestStories?.map((story, i) => (
           <StoryCard
             key={story.id}
@@ -66,32 +88,21 @@ export default function CategoryStoriesFetcher({
       <div className="mt-18">
         <H1 highlight="#813D97">
           OTHER STORIES IN{" "}
-          {latestStories?.[0]?.category.category_name.toUpperCase() ||
-            otherStories?.[0]?.category.category_name.toUpperCase()}
+          {latestStories?.[0]?.category?.category_name.toUpperCase() ||
+            otherStories?.[0]?.category?.category_name.toUpperCase()}
         </H1>
 
-        <div className="mt-8 flex">
+        <div className="mt-8 flex lg:flex-row flex-col gap-10">
           <div className="flex-1 h-auto flex flex-col gap-8 ">
             {otherStories?.map((story, i) => (
               <CategoryStory key={i} story={story} />
             ))}
           </div>
-          <div className="basis-[18.5rem] w-fit flex flex-col gap-10 ">
-            {ads.map((src, i) => (
-              <Image
-                key={i}
-                src={src.toString() || "images/placeholder-image.jpg"}
-                width={266}
-                height={400}
-                alt={`ad-${i}`}
-                className="w-full h-auto imageEffect"
-              />
-            ))}
-          </div>
+          {!isMobile && !isTablet && <Ads />}
         </div>
       </div>
 
-      <div className="mt-26 w-fit mr-full">
+      <div className="lg:mt-26 mt-12 w-fit mr-full">
         <PaginationTabs
           variant="large"
           totalItems={totalItems}
@@ -100,6 +111,8 @@ export default function CategoryStoriesFetcher({
           onChange={(page) => setCurrentPage(page)}
         />
       </div>
+
+      {(isMobile || isTablet) && <Ads />}
     </div>
   );
 }

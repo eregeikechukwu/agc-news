@@ -12,11 +12,34 @@ import { toggleBookmark } from "@/src/lib/slices/bookmarkSlice";
 import { useTooltipsHandler } from "@/src/utils/tooltipsHandler";
 import ErrorFallback from "../Fallbacks/ErrorFallback";
 import BookmarkPageSkeleton from "../skeletons/BookmarkPageSkeleton";
+import { useEffect, useState } from "react";
 
 export default function BookmarkedStoriesGrid() {
   const { bookmarkedStories } = useAppSelector((state) => state.bookmarks);
   const { isError } = useStoryById(bookmarkedStories[0 || 1 || 2] || "");
+  const [isLoading, setIsLoading] = useState(true);
 
+  useEffect(() => {
+    if (bookmarkedStories.length) {
+      setIsLoading(false);
+    }
+  }, [bookmarkedStories]);
+
+  if (isError) {
+    return <ErrorFallback message="Something went wrong fetching data." />;
+  }
+
+  /* Render loading skeleton */
+  if (isLoading) {
+    return (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+        {Array.from({ length: 6 }).map((_, i) => (
+          <BookmarkPageSkeleton key={i} />
+        ))}
+      </div>
+    );
+  }
+  /* Show no stories message if there are no bookmarks */
   if (!bookmarkedStories.length) {
     return (
       <NoStories
@@ -26,16 +49,13 @@ export default function BookmarkedStoriesGrid() {
     );
   }
 
-  if (isError) {
-    return <ErrorFallback message="Something went wrong fetching data." />;
-  }
-
   return (
     <div className="mt-22">
       <H1 highlight="#813D97" chevron={false}>
         Bookmarks
       </H1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+        {/* Render bookmarked stories */}
         {bookmarkedStories.map((id) => (
           <BookmarkCard key={id} id={id} />
         ))}
@@ -44,7 +64,7 @@ export default function BookmarkedStoriesGrid() {
   );
 }
 
-function BookmarkCard({ id }: { id: string }) {
+export function BookmarkCard({ id }: { id: string }) {
   const { data, isPending } = useStoryById(id);
   const imageSrc = useImage(data?.banner_image);
   const dispatch = useAppDispatch();

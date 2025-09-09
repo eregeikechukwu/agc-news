@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Story } from "../lib/types/api-types";
+import { ApiEnvelope, Story } from "../lib/types/api-types";
 import { useAppDispatch, useAppSelector } from "./reduxHooks";
 import { useQueryClient } from "@tanstack/react-query";
 import { useDebounce } from "./useDebounce";
@@ -46,15 +46,15 @@ export function useSearchFromCache() {
         rawData &&
         typeof rawData === "object" &&
         "data" in rawData &&
-        Array.isArray((rawData as any).data)
+        Array.isArray((rawData as ApiEnvelope<Story>).data)
       ) {
         allStories.push(...(rawData as { data: Story[] }).data);
       } else if (
         rawData &&
         typeof rawData === "object" &&
         "data" in rawData &&
-        "data" in (rawData as any).data &&
-        Array.isArray((rawData as any).data.data)
+        "data" in (rawData as ApiEnvelope<Story>).data &&
+        Array.isArray((rawData as ApiEnvelope<ApiEnvelope<Story>>).data.data)
       ) {
         allStories.push(...(rawData as { data: { data: Story[] } }).data.data);
       }

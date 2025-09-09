@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import "../styles/global.css";
-import { euclide } from "../styles/fonts";
+import "../styles/global.scss";
+import { euclide, nunito, montserrat } from "../styles/fonts";
 import { AppHeader } from "../components/layout";
 import { Providers } from "./providers";
 import { Footer } from "../components/sections";
@@ -19,11 +19,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${euclide.variable} antialiased`}>
+      <body
+        className={` ${nunito.variable} ${montserrat.variable} ${euclide.variable} antialiased`}
+      >
         <Providers>
           <div className="flex flex-col min-h-screen justify-between">
             <AppHeader />
-            <main className="container px-padding-general-x">{children}</main>
+            <main className="container px-padding-general-x-mobile lg:px-padding-general-x">
+              {children}
+            </main>
             <BackDrop />
             <Footer />
           </div>

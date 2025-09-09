@@ -13,6 +13,7 @@ import H1 from "../UI/H1";
 import OthersGridItem from "../UI/OthersGridItem";
 import NewsCategorySkeleton from "../skeletons/NewsCategorySkeleton";
 import ErrorFallback from "../Fallbacks/ErrorFallback";
+import useScreenSize from "@/src/hooks/useScreenSize";
 
 export default function CategoriesSection() {
   const { data, isPending, isError, error } = useCategories();
@@ -26,7 +27,7 @@ export default function CategoriesSection() {
     const fetchStories = async () => {
       const ids = data.data.data.map((item) => item.category_id);
       const allStories = await Promise.all(
-        ids.map((id) => fetchCategoryStories(id))
+        ids.map((id) => fetchCategoryStories(id as string))
       );
       setCategoryStories(allStories);
     };
@@ -63,10 +64,13 @@ export default function CategoriesSection() {
 }
 
 function CategoryTab({ name, stories }: { name: string; stories: Story[] }) {
+  const { isMobile } = useScreenSize();
+  console.log("Category Stories: ", isMobile);
+
   if (!stories) return <div>loading...</div>;
 
   // Map API story to the expected StoryCard type
-  const mapToStoryCardType = (story: any) => ({
+  const mapToStoryCardType = (story: Story) => ({
     id: story.id,
     story: story,
     author: story.author,
@@ -81,16 +85,20 @@ function CategoryTab({ name, stories }: { name: string; stories: Story[] }) {
       <H1 chevron={true} highlight="#813D97">
         {name}
       </H1>
-      <div className="mt-4 gap-8 flex">
+      <div className="mt-4 gap-8 lg:flex-row flex-col flex">
         <div className="basis-[59.41%] relative">
           {stories[0] && (
             <StoryCard variant="large" story={mapToStoryCardType(stories[0])} />
           )}
-          <span className="w-[1px] absolute -right-[1.56rem] -top-11 bottom-0 bg-[#c8c8c8]"></span>
+          <span className="w-[1px] absolute lg:block hidden -right-[1.56rem] -top-11 bottom-0 bg-[#c8c8c8]"></span>
         </div>
         <div className="flex-1">
           {stories.slice(1, 5).map((story, i) => (
-            <OthersGridItem variant="withImg" key={i} story={story} />
+            <OthersGridItem
+              variant={isMobile ? "simple" : "withImg"}
+              key={i}
+              story={story}
+            />
           ))}
         </div>
       </div>

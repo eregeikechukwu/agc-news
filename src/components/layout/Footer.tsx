@@ -5,11 +5,16 @@ import Logo from "../UI/logo";
 import Link from "next/link";
 import { footerItems } from "@/src/utils/footerItems";
 import { Search } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { toggleSearch } from "@/src/lib/slices/appSlice";
 
 export default function Footer() {
+  const dispatch = useDispatch();
+
   return (
-    <section className="mt-28 bg-[#2d2a2a]">
-      <div className="px-[10.3rem] py-[1.8rem]">
+    <section className="md:mt-28 mt-16 bg-[#2d2a2a]">
+      <div className="lg:px-[10.3rem] md:px-[4.5rem] px-[1.5rem] py-[1.8rem]">
         <div className="flex justify-between">
           <Logo />
           <div className="flex gap-4">
@@ -27,6 +32,7 @@ export default function Footer() {
         <div className="relative mt-[1.56rem] h-12">
           <label className="hidden" htmlFor="search"></label>
           <input
+          onClick={() => dispatch(toggleSearch())}
             id="search"
             className=" h-full pl-3 pr-[3.38rem] outline-0 w-full rounded-[0.31rem] bg-white"
             type="text"
@@ -39,7 +45,7 @@ export default function Footer() {
         </div>
 
         {/* Links */}
-        <div className="mt-9 flex shrink gap-8 justify-between">
+        <div className="mt-9 max-md:px-[1.125rem] lg:flex justify-between grid grid-cols-[repeat(auto-fit,minmax(5rem,1fr))] gap-y-[3rem] gap-8 ">
           {footerItems.map((group, i) => (
             // Link items looped
             <Links key={i}>
@@ -52,7 +58,7 @@ export default function Footer() {
           ))}
         </div>
         {/* copyright */}
-        <p className="mt-13 text-white">
+        <p className="md:mt-13 text-center mt-[5.375rem] text-white">
           © 2024 AGC Newsnet. All Rights Reserved.
         </p>
       </div>
@@ -62,7 +68,9 @@ export default function Footer() {
 
 function Links({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex flex-col  gap-[1.56rem] min-w-16 ">{children}</div>
+    <div className="flex flex-col  gap-[1.75rem] sm:gap-[1.56rem] min-w-16 ">
+      {children}
+    </div>
   );
 }
 
@@ -73,13 +81,18 @@ function LinkItem({
   children: React.ReactNode;
   href: string;
 }) {
+  const url = usePathname();
+
   return (
     <Link
       href={href}
-      className="text-white whitespace-nowrap cursor-pointer group"
+      className="text-white text-semibold whitespace-nowrap cursor-pointer group"
     >
-      <div className=" after:content-[''] after:w-0 after:h-[1px] after:bg-white after:block after:transition-all after:duration-300 group-hover:after:w-full">
+      <div className="relative after:content-[''] after:w-0 after:h-[3px] after:bg-red-500 after:block after:transition-all after:duration-300 group-hover:after:w-5">
         {children}
+        {url === href && (
+          <span className="w-5 bottom-0 absolute rounded-full h-[3px] left-0 bg-red-500"></span>
+        )}
       </div>
     </Link>
   );

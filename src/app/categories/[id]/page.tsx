@@ -2,8 +2,12 @@ import CategoriesPageWrapper from "@/src/components/wrappers/CategoriesPageWrapp
 import { CategoryPageProps } from "../categories.types";
 import CategoryStoriesPage from "@/src/components/pages/categoryStoriesPage/CategoryStoriesPage";
 
-export default async function CategoryPage({ params }: CategoryPageProps) {
-  const categoryId = params.id;
+export default async function CategoryPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id: categoryId } = await params;
 
   return <CategoriesPageWrapper categoryId={categoryId} />;
 }

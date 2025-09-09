@@ -21,13 +21,17 @@ export default function MissedStories() {
   return (
     <div className="mt-26">
       <div className="flex justify-between mb-[1.6rem]">
-        <h1 className="text-[1.75rem]">STORIES YOU MAY HAVE MISSED</h1>
-        <PaginationTabs
-          variant="small"
-          currentPage={currentPage}
-          totalPages={data?.meta.last_page || 1}
-          onChange={onChange}
-        />
+        <h1 className="md:text-[1.75rem] text-[1.375rem] font-bold font-nunito">
+          STORIES YOU MAY HAVE MISSED
+        </h1>
+        <div className="center_child sm:block max-sm:!hidden">
+          <PaginationTabs
+            variant="small"
+            currentPage={currentPage}
+            totalPages={data?.meta.last_page || 1}
+            onChange={onChange}
+          />
+        </div>
       </div>
       <div>
         {isPending ? (
@@ -35,13 +39,13 @@ export default function MissedStories() {
         ) : isError ? (
           <ErrorFallback message={error.message} />
         ) : (
-          <div className="grid grid-cols-4 gap-12">
+          <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 sm:gap-12 gap-5">
             {missedStories?.slice(0, 4).map((story, i) => (
               <Link key={i} href={`/stories/${story.id}`}>
                 <div className="flex gap-3 ">
                   <span className="h-[0.94rem] min-w-[0.94rem] bg-[#282828] mt-1 rounded-xs"></span>
                   <div>
-                    <p>{story.title}</p>
+                    <p className="font-nunito">{story.title}</p>
                     <div className="flex gap-2 mt-2">
                       <Tag variant="dark">{story.author}</Tag>
                       <Tag variant="dark">

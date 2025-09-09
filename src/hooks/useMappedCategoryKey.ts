@@ -12,7 +12,9 @@ export default function useMappedCategoryKey(categoryName: string) {
   const categoriesMap = useMemo(() => {
     const map: Record<string, string> = {};
     data?.data?.data?.forEach((item) => {
-      map[item.category_name.toLowerCase()] = item.category_id;
+      if (item.category_name && item.category_id) {
+        map[item.category_name.toLowerCase()] = item.category_id;
+      }
     });
     return map;
   }, [data]);

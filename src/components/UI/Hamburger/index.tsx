@@ -7,7 +7,7 @@ export default function Hamburger({
   isMenuOpen,
 }: {
   toggleMenu: () => void;
-  isMenuOpen: Boolean;
+  isMenuOpen: boolean;
 }) {
   return (
     <label className={styles.hamburger}>
@@ -20,9 +20,9 @@ export default function Hamburger({
       <div
         className={`${styles.hamburgers} flex flex-col justify-between w-full h-full`}
       >
-        <span className=" w-6/10"></span>
-        <span className=" w-full"></span>
-        <span className=" w-8/10"></span>
+        <span className="w-6/10"></span>
+        <span className="w-full"></span>
+        <span className="w-8/10"></span>
       </div>
     </label>
   );

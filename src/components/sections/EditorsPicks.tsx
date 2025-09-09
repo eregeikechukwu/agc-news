@@ -7,6 +7,7 @@ import OthersGridItem from "@/src/components/UI/OthersGridItem";
 import EditorPicksSkeleton from "@/src/components/skeletons/EditorPicksSkeleton";
 import ErrorFallback from "../Fallbacks/ErrorFallback";
 import NoStories from "../Fallbacks/NoStories";
+import { Story } from "@/src/lib/types/api-types";
 
 export default function EditorsPicks() {
   const { data, isPending, isError, error } = useEditorsPicks();
@@ -27,9 +28,14 @@ export default function EditorsPicks() {
     .slice(0, 5);
 
   return (
-    <section className="flex bg-muted px-padding-general-x -ml-padding-general-x py-padding-general-x w-[calc(100%+2*var(--spacing-padding-general-x))] gap-4">
+    <section
+      className="flex relative md:flex-row flex-col bg-muted md:px-padding-general-x px-padding-general-x-mobile 
+      w-screen
+    -ml-padding-general-x-mobile
+     lg:-ml-padding-general-x py-padding-general-x lg:w-[calc(100%+2*var(--spacing-padding-general-x))] md:gap-4"
+    >
       <div className="basis-[68%] relative overflow-hidden">
-        <StoryCard variant="horizontal" story={activeStory?.story} />
+        <StoryCard variant="horizontal" story={activeStory?.story as Story} />
         <button className="absolute flex items-center gap-2 h-[2.69rem] rounded-full backdrop-blur-[0.31rem] px-4 border-[0.06rem] text-white border-[#DDDDDD] bg-[rgba(0,0,0,0.37)] text-[0.94rem] top-[1.12rem] left-[1.06rem]">
           <span className="flex items-center justify-center rounded-full h-[1.56rem] w-[1.56rem] bg-[#D72B81]">
             <Crown fill="white" className="w-[0.81rem] h-[0.81rem]" />
@@ -39,7 +45,7 @@ export default function EditorsPicks() {
       </div>
 
       <div className="flex-1">
-        <h1 className="text-[1.13rem] mb-4">MORE STORIES</h1>
+        <h1 className="text-[1.13rem] hidden md:block mb-4">MORE STORIES</h1>
         <div className="flex flex-col ">
           {activeStories.map((item, i) =>
             item.story ? (

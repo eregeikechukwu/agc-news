@@ -1,0 +1,94 @@
+@use "./variables" as vars;
+
+//Responsive mixin Function
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == mobile {
+    @media (min-width: vars.$min-mobile) and (max-width: vars.$max-mobile) {
+      @content;
+    }
+  }
+  @if $breakpoint == small {
+    @media (min-width: vars.$min-small) and (max-width: vars.$max-small) {
+      @content;
+    }
+  }
+  @if $breakpoint == medium {
+    @media (min-width: vars.$min-medium) and (max-width: vars.$max-medium) {
+      @content;
+    }
+  }
+  @if $breakpoint == large {
+    @media (min-width: vars.$min-large) and (max-width: vars.$max-large) {
+      @content;
+    }
+  }
+  @if $breakpoint == extra-large {
+    @media (min-width: vars.$min-extra-large) and (max-width: vars.$max-extra-large) {
+      @content;
+    }
+  }
+}
+
+@mixin respond-to-abs($breakpoint) {
+  @if $breakpoint == mobile {
+    @media (max-width: vars.$max-mobile) {
+      @content;
+    }
+  }
+  @if $breakpoint == small {
+    @media (max-width: vars.$max-small) {
+      @content;
+    }
+  }
+  @if $breakpoint == medium {
+    @media (max-width: vars.$min-medium) {
+      @content;
+    }
+  }
+  @if $breakpoint == large {
+    @media (max-width: vars.$max-large) {
+      @content;
+    }
+  }
+  @if $breakpoint == extra-large {
+    @media (max-width: vars.$max-extra-large) {
+      @content;
+    }
+  }
+}
+
+//Responsive Typography
+@mixin font-size-responsive($mobile, $medium, $large) {
+  font-size: $large;
+
+  @include respond-to-abs(medium) {
+    font-size: $medium;
+  }
+
+  @include respond-to(mobile) {
+    font-size: $mobile;
+  }
+}
+
+@mixin story-card-skeleton {
+  flex-direction: row !important;
+
+  & > div {
+    &:first-child {
+      @include respond-to-abs(medium) {
+        min-height: 8rem !important;
+        width: 60%;
+        & > * {
+          display: none;
+        }
+      }
+      @include respond-to-abs(mobile) {
+        min-height: 6rem !important;
+      }
+    }
+
+    &:nth-child(2) {
+      width: 40%;
+    }
+  }
+}

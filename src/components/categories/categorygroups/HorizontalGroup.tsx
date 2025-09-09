@@ -1,22 +1,32 @@
 import { Story } from "@/src/lib/types/api-types";
-import "@/src/styles/utils.scss";
+import "@/src/styles/sass/utils.scss";
 import Link from "next/link";
+import HorizontalScrollGridContainer from "../../UI/horizontalScrollGridContainer";
+import { LatestNewsCardSkeleton } from "../../skeletons/LatestStoriesSkeleton";
 
-export default function HorizontalGroup({ stories }: { stories: Story[] }) {
+export default function HorizontalGroup({
+  ref,
+  stories,
+  isPending,
+}: {
+  ref: React.Ref<HTMLDivElement>;
+  stories: Story[];
+  isPending?: boolean;
+}) {
   function Card({ item }: { item: Story }) {
     return (
       <div
         style={{ backgroundImage: `url(${item.banner_image})` }}
-        className=" rounded-[0.75rem] bg-cover bottom_shadow"
+        className=" rounded-[0.75rem] max-md:h-[24.8rem]  bg-cover bottom_shadow_carousel"
       >
         <Link href={`/stories/${item.id}`}>
-          <div className={`px-[1.06rem] pb-[5%] story_description`}>
+          <div className={`px-[1.06rem] pb-[5%] story_description_carousel`}>
             <p className="text-xl text-white">{item.description}</p>
           </div>
         </Link>
-        <Link href={`/categories/${item.category.category_name}`}>
+        <Link href={`/categories/${item.category?.category_name}`}>
           <button className="category_button">
-            {item.category.category_name}
+            {item.category?.category_name}
           </button>
         </Link>
       </div>
@@ -24,12 +34,19 @@ export default function HorizontalGroup({ stories }: { stories: Story[] }) {
   }
 
   return (
-    <div className="w-full">
-      <div className="gap-[1.06rem] grid-rows-[repeat(auto-fill,24rem)] grid-flow-col  grid grid-cols-[repeat(auto-fill,minmax(22%,1fr))]">
+    <div
+      ref={ref}
+      className="w-full  overflow-x-auto no-scrollbar touch-scroll"
+    >
+      <HorizontalScrollGridContainer>
         {stories?.map((item: Story, i: number) => (
           <Card item={item} key={i} />
         ))}
-      </div>
+        {isPending &&
+          Array.from({ length: 4 }).map((_, i) => (
+            <LatestNewsCardSkeleton i={i} key={i} />
+          ))}
+      </HorizontalScrollGridContainer>
     </div>
   );
 }

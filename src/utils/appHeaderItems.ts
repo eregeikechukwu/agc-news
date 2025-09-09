@@ -1,54 +1,54 @@
 export const headerItems = [
   {
     name: "About Us",
-    href: "/under-construction",
+    path: "/under-construction",
   },
   {
     name: "Contact Us",
-    href: "/under-construction",
+    path: "/under-construction",
   },
   {
     name: "AGC Bookmarks",
-    href: "/bookmarks",
+    path: "/bookmarks",
   },
   {
     name: "Advert Rate",
-    href: "/under-construction",
+    path: "/under-construction",
   },
   {
     name: "Privacy Policy",
-    href: "/under-construction",
+    path: "/under-construction",
   },
   {
     name: "AGC VIP",
-    href: "/under-construction",
+    path: "/under-construction",
   },
 ];
 
 export const socials = [
   {
     name: "Facebook",
-    href: "/",
+    path: "/",
     logo: "/images/facebook.png",
   },
   {
     name: "Twitter",
-    href: "/",
+    path: "/",
     logo: "/images/twitter.png",
   },
   {
     name: "Instagram",
-    href: "/",
+    path: "/",
     logo: "/images/instagram.png",
   },
   {
     name: "drop",
-    href: "/",
+    path: "/",
     logo: "/images/drop.png",
   },
   {
     name: "LinkedIn",
-    href: "/",
+    path: "/",
     logo: "/images/linkedin.png",
   },
 ];
@@ -56,7 +56,7 @@ export const socials = [
 export const navCategories1 = [
   { name: "Home", path: "/" },
   { name: "Africa", path: "/categories/africa" },
-  { name: "Politics", path: "/categories/politics" },
+  { name: "Politics", path: "/categories/Politics" },
   { name: "Business", path: "/categories/business" },
   { name: "Sport", path: "/categories/sports" },
   { name: "Health", path: "/categories/health" },
@@ -65,7 +65,7 @@ export const navCategories1 = [
 ];
 
 export const navCategories2 = [
-  { name: "Photos", path: "/" },
+  { name: "Photos", path: "category/photos" },
   { name: "Videos", path: "category/videos" },
   { name: "Audio", path: "category/audio" },
 ];

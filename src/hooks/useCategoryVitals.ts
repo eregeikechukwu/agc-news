@@ -1,7 +1,6 @@
 import { useMemo, useState } from "react";
 import { useCategoryStories } from "../app/stories/useStories";
 import { useAds } from "../app/features/ads/useAds";
-import { is } from "date-fns/locale";
 
 export function useCategoryVitals(categoryKey: string) {
   const [currentPage, setCurrentPage] = useState(1);
