@@ -1,12 +1,16 @@
-//Fix for environments where TrustedHTML is not defined
+export {};
 
+// Fix for environments where TrustedHTML is not defined
 declare type TrustedHTML = string;
 declare type TrustedScript = string;
 
-//FIx for environments where HTMLWebViewElement is not defined
-type HTMLWebViewElement = HTMLElement;
+declare global {
+  type HTMLWebViewElement = HTMLElement;
+  type TrustedHTML = string;
+  type TrustedScript = string;
 
-// Temp fix for lucide-react with React 19
-declare namespace React {
-  type ReactSVG = unknown;
+  namespace React {
+    // Fake type to satisfy lucid-react until they update
+    type ReactSVG = unknown;
+  }
 }
