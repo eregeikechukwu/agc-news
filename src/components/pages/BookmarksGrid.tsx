@@ -107,7 +107,7 @@ export function BookmarkCard({ id }: { id: string }) {
         </h2>
         <p
           className="text-sm text-gray-600 line-clamp-3"
-          dangerouslySetInnerHTML={{ __html: data?.content }}
+          dangerouslySetInnerHTML={{ __html: data?.content as string }}
         />
       </div>
     </div>
