@@ -1,11 +1,11 @@
 export {};
 
-// Fix for environments where TrustedHTML is not defined
-declare type TrustedHTML = string;
-declare type TrustedScript = string;
-
 declare global {
-  type HTMLWebViewElement = HTMLElement;
+  /* eslint-disable @typescript-eslint/no-empty-object-type */
+  interface HTMLWebViewElement extends HTMLElement {}
+  /* eslint-enable @typescript-eslint/no-empty-object-type */
+
+  // Fix for environments where TrustedHTML is not defined
   type TrustedHTML = string;
   type TrustedScript = string;
 
