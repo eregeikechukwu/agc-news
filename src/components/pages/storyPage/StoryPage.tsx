@@ -134,7 +134,7 @@ export function StoryPage({ storyId }: StoryIdProp) {
                 </button>
               </div>
               <article className="prose text-[1.25rem] !w-full  prose-md">
-                <div dangerouslySetInnerHTML={{ __html: data?.content }}></div>
+                <div dangerouslySetInnerHTML={{ __html: data?.content ?? "" }}></div>
               </article>
               {/* socials */}
               <div className="mt-5 flex gap-3">
