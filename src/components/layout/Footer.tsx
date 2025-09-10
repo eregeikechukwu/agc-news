@@ -59,7 +59,7 @@ export default function Footer() {
         </div>
         {/* copyright */}
         <p className="md:mt-13 text-center mt-[5.375rem] text-white">
-          © 2024 AGC Newsnet. All Rights Reserved.
+          © 2025 AGC Newsnet. All Rights Reserved.
         </p>
       </div>
     </section>

@@ -10,7 +10,7 @@ export function useSearchFromCache() {
   const dispatch = useAppDispatch();
   const { searchQuery, searchInitQuery } = useAppSelector((state) => state.app);
 
-  const debouncedQuery = useDebounce(searchQuery, 400);
+  const debouncedQuery = useDebounce(searchQuery.toLowerCase(), 400);
 
   // Effect for clearing input filed
   useEffect(() => {

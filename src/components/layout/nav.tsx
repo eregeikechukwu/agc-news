@@ -53,7 +53,7 @@ function Nav() {
   }
 
   //close search  when outside of the search is clicked
-  // useClickOutside(isSearchOpen, closeSearchCallback);
+  useClickOutside(isSearchOpen, () => {});
 
   // Intersection observer
   useIntersectionObserver(navRef as React.RefObject<HTMLElement>);
@@ -62,7 +62,7 @@ function Nav() {
   return (
     <div
       ref={navRef}
-      className="bg-[#1B1B1B] z-200 flex lg:top-[calc(100%-var(--nav-height))] top-0 lg:bottom-0 right-0 left-0 text-white absolute text-[1.13rem]  h-18 lg:h-[var(--nav-height)] px-[0.94rem] sm:px-[1.7rem] md:px-[2.81rem]  justify-between"
+      className="bg-[#1B1B1B] z-200 flex max-lg:fixed lg:top-[calc(100%-var(--nav-height))] top-0 lg:bottom-0 right-0 left-0 text-white absolute text-[1.13rem]  h-18 lg:h-[var(--nav-height)] px-[0.94rem] sm:px-[1.7rem] md:px-[2.81rem]  justify-between"
     >
       {!(isMobile || isTablet) ? (
         <>
