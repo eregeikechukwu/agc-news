@@ -59,10 +59,14 @@ export default function CategoryStoriesFetcher({
 
   const scrollToTop = () => {
     setTimeout(() => {
-      window.scrollTo({
-        top: otherStories ? OtherStoriesRef.current?.offsetTop! - 100 : 0,
-        behavior: "smooth",
-      });
+      if (otherStories && OtherStoriesRef.current) {
+        window.scrollTo({
+          top: OtherStoriesRef.current.offsetTop - 100,
+          behavior: "smooth",
+        });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
     }, 400);
   };
 
