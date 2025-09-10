@@ -4,9 +4,9 @@ import StoryPageWrapper from "@/src/components/wrappers/StoryPageWrapper";
 export default async function StoryPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }> ;
 }) {
-  const { id: storyId } = params;
+  const { id: storyId } = await params;
 
   // Server-side fetch of the story
   const res = await fetch(
