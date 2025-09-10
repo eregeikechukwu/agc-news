@@ -16,7 +16,7 @@
   margin: 1rem;
   font-size: 1.4rem;
   color: black;
-  padding-inline: 1rem;
+  // padding-inline: 1rem;
   background-image: linear-gradient(
     120deg,
     transparent 0%,
@@ -53,8 +53,6 @@
   }
 }
 
-
-
 .futuristic_card {
   position: relative;
   width: 300px;
@@ -74,11 +72,9 @@
   padding: 2px; /* thickness of border */
   border-radius: inherit;
   background: linear-gradient(120deg, #00f0ff, #ff00e0, #00ff88);
-  -webkit-mask: 
-    linear-gradient(#000 0 0) content-box, 
-    linear-gradient(#000 0 0);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
-          mask-composite: exclude;
+  mask-composite: exclude;
   opacity: 0.8;
 }
 
@@ -88,14 +84,17 @@
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(to bottom, rgba(0, 255, 255, 0.7), transparent 70%);
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 255, 255, 0.7),
+    transparent 70%
+  );
   z-index: 1;
   pointer-events: none;
 }
 
 /* Glow effect */
 .futuristic_card:hover {
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.7), 
-              0 0 40px rgba(255, 0, 200, 0.5);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.7), 0 0 40px rgba(255, 0, 200, 0.5);
   transition: box-shadow 0.3s ease;
 }

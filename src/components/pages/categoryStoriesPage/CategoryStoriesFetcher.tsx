@@ -11,6 +11,7 @@ import { useCategoryVitals } from "@/src/hooks/useCategoryVitals";
 import useMappedCategoryKey from "@/src/hooks/useMappedCategoryKey";
 import NoStories from "../../Fallbacks/NoStories";
 import useScreenSize from "@/src/hooks/useScreenSize";
+import { useRef } from "react";
 
 export default function CategoryStoriesFetcher({
   categoryKey,
@@ -23,6 +24,8 @@ export default function CategoryStoriesFetcher({
     categoryError,
     // isCategoryError,
   } = useMappedCategoryKey(categoryKey);
+
+  const OtherStoriesRef = useRef<HTMLDivElement>(null);
 
   const { isMobile, isTablet } = useScreenSize();
 
@@ -53,6 +56,15 @@ export default function CategoryStoriesFetcher({
     return <CategoryPageSkeleton />;
 
   if (!categoryId) return <NoStories title={categoryKey} />;
+
+  const scrollToTop = () => {
+    setTimeout(() => {
+      window.scrollTo({
+        top: otherStories ? OtherStoriesRef.current?.offsetTop! - 100 : 0,
+        behavior: "smooth",
+      });
+    }, 400);
+  };
 
   //Ads
   function Ads() {
@@ -85,7 +97,7 @@ export default function CategoryStoriesFetcher({
         ))}
       </div>
 
-      <div className="mt-18">
+      <div ref={OtherStoriesRef} className="mt-18">
         <H1 highlight="#813D97">
           OTHER STORIES IN{" "}
           {latestStories?.[0]?.category?.category_name.toUpperCase() ||
@@ -102,7 +114,7 @@ export default function CategoryStoriesFetcher({
         </div>
       </div>
 
-      <div className="lg:mt-26 mt-12 w-fit mr-full">
+      <div onClick={scrollToTop} className="lg:mt-26 mt-12 w-fit mr-full">
         <PaginationTabs
           variant="large"
           totalItems={totalItems}

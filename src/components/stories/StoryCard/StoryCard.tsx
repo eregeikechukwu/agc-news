@@ -23,9 +23,7 @@ export function StoryCard({ variant, story, latest = false }: StoryCardProps) {
           className={`bg-cover h-full md:relative ${
             styles.gridCard
           } bottom_shadow max-md:flex ${
-            latest
-              ? "max-md:flex-col gap-4"
-              : "max-md:flex-row items-center gap-4"
+            latest ? "max-md:flex-col gap-4" : "max-md:flex-row  gap-4"
           }`}
         >
           <div
@@ -56,7 +54,9 @@ export function StoryCard({ variant, story, latest = false }: StoryCardProps) {
             </h1>
             <p
               className={`md:text-[1.3rem] font-nunito font-semibold leading-snug md:text-white ${
-                latest ? "text-[1.38rem]" : "sm:!text-[1.2rem] text-[1rem]"
+                latest
+                  ? "text-[1.38rem]"
+                  : "min-[560px]:!text-[1.3rem] text-[1rem]"
               }`}
             >
               {story.description}

@@ -11,6 +11,8 @@ export default function PaginationTabs({
 }: PaginationProps) {
   if (totalPages <= 1) return null;
 
+  const scrollToTop = () => {};
+
   const pages = getVisiblePages(currentPage, totalPages);
 
   const adjustedTotal = (totalItems || 1) - 2 * totalPages;
@@ -77,7 +79,10 @@ export default function PaginationTabs({
             onClick={() => onChange(currentPage - 1)}
             className=" disabled:opacity-40"
           >
-            <Triangle fill="black" className="md:h-6 rotate-270 md:w-6 w-4 h-4  text-black" />
+            <Triangle
+              fill="black"
+              className="md:h-6 rotate-270 md:w-6 w-4 h-4  text-black"
+            />
           </button>
 
           {/* Page numbers */}

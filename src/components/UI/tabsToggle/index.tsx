@@ -45,7 +45,7 @@ export default function TwoWayToggle({
   return (
     <div
       ref={containerRef}
-      className={`relative flex gap-8 items-center rounded-full border border-gray-600 bg-[#121212] p-1 ${className}`}
+      className={`relative justify-center w-fit flex gap-8 items-center rounded-full border border-gray-600 bg-[#121212] p-1 ${className}`}
     >
       {/* highlight */}
       <div

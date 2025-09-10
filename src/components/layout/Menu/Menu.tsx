@@ -28,7 +28,7 @@ function Menu({
 
   function LinkItem({ children, href }: { children: string; href: string }) {
     return (
-      <li className={styles.link}>
+      <li onClick={toggleMenu} className={styles.link}>
         <a href={href}>{children}</a>
       </li>
     );
