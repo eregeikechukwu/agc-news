@@ -2,6 +2,8 @@ import { useMemo } from "react";
 import { useCategories } from "../app/stories/useStories";
 
 export default function useMappedCategoryKey(categoryName: string) {
+  let categoryKey = "something";
+
   const {
     data,
     isPending: isCategoryPending,
@@ -18,7 +20,8 @@ export default function useMappedCategoryKey(categoryName: string) {
     });
     return map;
   }, [data]);
-  const categoryKey = categoriesMap[categoryName?.toLowerCase()];
+  if (!isCategoryPending)
+    categoryKey = categoriesMap[categoryName?.toLowerCase()];
 
   return { categoryKey, isCategoryPending, categoryError, isCategoryError };
 }

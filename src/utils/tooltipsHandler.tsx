@@ -35,12 +35,11 @@ export function useTooltipsHandler(action: "copy" | "bookmark") {
           setIsSharing(true);
           await navigator.share({
             title: "Check this out!",
-            text: "Trending news on AGC",
+            text: "Trending news on AGC: ",
             url: window.location.href,
           });
         } catch (err) {
           console.error("Error sharing:", err);
-          alert("Sharing is not supported in this browser");
         } finally {
           setIsSharing(false);
         }

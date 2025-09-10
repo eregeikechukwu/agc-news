@@ -22,7 +22,6 @@ export default function CategoryStoriesFetcher({
     categoryKey: categoryId,
     isCategoryPending,
     categoryError,
-    // isCategoryError,
   } = useMappedCategoryKey(categoryKey);
 
   const OtherStoriesRef = useRef<HTMLDivElement>(null);
@@ -45,8 +44,15 @@ export default function CategoryStoriesFetcher({
     isPagedError,
     ads,
   } = useCategoryVitals(categoryId);
+
   if (firstError || pagedError || isFirstError || isPagedError || categoryError)
     return <ErrorFallback />;
+
+console.log(categoryId, " mmmmm")
+
+  if (!categoryId) {
+    return <NoStories title={categoryKey} />;
+  }
 
   if (
     isCategoryPending ||
@@ -54,8 +60,6 @@ export default function CategoryStoriesFetcher({
     (!isFirstPage && isPagedPending)
   )
     return <CategoryPageSkeleton />;
-
-  if (!categoryId) return <NoStories title={categoryKey} />;
 
   const scrollToTop = () => {
     setTimeout(() => {

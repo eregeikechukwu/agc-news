@@ -60,8 +60,8 @@ export const navCategories1 = [
   { name: "Business", path: "/categories/business" },
   { name: "Sport", path: "/categories/sports" },
   { name: "Health", path: "/categories/health" },
-  { name: "Tech", path: "categories/tech" },
-  { name: "Opinion", path: "category/opinion" },
+  { name: "Tech", path: "/categories/tech" },
+  { name: "Opinion", path: "/category/opinion" },
 ];
 
 export const navCategories2 = [

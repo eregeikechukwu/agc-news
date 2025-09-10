@@ -52,10 +52,8 @@ function Nav() {
     document.body.style.overflowY = "scroll";
   }
 
-  //close menu for mobile when outside of the menu is clicked
-  useClickOutside(isSearchOpen, () => {
-    dispatch(toggleSearch());
-  });
+  //close search  when outside of the search is clicked
+  // useClickOutside(isSearchOpen, closeSearchCallback);
 
   // Intersection observer
   useIntersectionObserver(navRef as React.RefObject<HTMLElement>);

@@ -53,10 +53,12 @@ export const appSlice = createSlice({
     },
 
     toggleSearch: (state) => {
-      state.isSearchOpen = !state.isSearchOpen;
       state.isBackdropVisible = !state.isBackdropVisible;
+      state.isSearchOpen = !state.isSearchOpen;
     },
     closeSearch: (state) => {
+      console.log("CLOSING SEARCH");
+      state.isBackdropVisible = false;
       state.isSearchOpen = false;
     },
   },
