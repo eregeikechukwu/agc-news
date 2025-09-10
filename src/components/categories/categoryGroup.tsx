@@ -1,6 +1,4 @@
-import Image from "next/image";
 import { StroyCardProps } from "@/src/app/stories/stories.types";
-import styles from "./categories.module.scss";
 import HorizontalGroup from "./categorygroups/HorizontalGroup";
 import { Story } from "@/src/lib/types/api-types";
 

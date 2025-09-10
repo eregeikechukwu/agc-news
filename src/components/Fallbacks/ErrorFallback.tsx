@@ -15,7 +15,7 @@ export default function ErrorFallback({
     if (!navigator.onLine) {
       setIsOffline(true);
     } else setIsOffline(false);
-  }, [navigator.onLine]);
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center py-12 px-6 text-center animate-fade-in">

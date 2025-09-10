@@ -4,9 +4,9 @@ declare type TrustedHTML = string;
 declare type TrustedScript = string;
 
 //FIx for environments where HTMLWebViewElement is not defined
-interface HTMLWebViewElement extends HTMLElement {}
+type HTMLWebViewElement = HTMLElement;
 
 // Temp fix for lucide-react with React 19
 declare namespace React {
-  interface ReactSVG {}
+  type ReactSVG = unknown;
 }

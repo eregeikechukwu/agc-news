@@ -26,7 +26,6 @@ export default function StoryCarouselTemplate({
   onChangePage: (page: number) => void;
 }) {
   const CarouselContainer = useRef<HTMLDivElement>(null);
-  const { isMobile, isTablet } = useScreenSize();
 
   useEffect(() => {
     const carousel = CarouselContainer.current;
@@ -44,7 +43,7 @@ export default function StoryCarouselTemplate({
     carousel.addEventListener("scroll", handleScroll);
 
     return () => carousel.removeEventListener("scroll", handleScroll);
-  }, [CarouselContainer, currentPage]);
+  }, [CarouselContainer, currentPage, onChangePage]);
 
   return (
     <div className="md:my-[5.75rem] my-[2.9375rem]">

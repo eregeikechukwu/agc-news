@@ -22,7 +22,7 @@ import useMappedCategoryKey from "@/src/hooks/useMappedCategoryKey";
 import { useAds } from "@/src/app/features/ads/useAds";
 import AlsoReading from "../../sections/AlsoReading";
 import StorySkeleton from "../../skeletons/StorySkeleton";
-import { LatestNews, MissedStories } from "../../sections";
+import {  MissedStories } from "../../sections";
 import OtherStoriesSkeleton from "../../skeletons/OtherStoriesSkeleton";
 import { useTooltipsHandler } from "@/src/utils/tooltipsHandler";
 import { useImage } from "@/src/hooks/useImage";

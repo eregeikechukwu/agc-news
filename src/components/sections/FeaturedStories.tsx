@@ -1,10 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import {
-  useFeaturedStories,
-  useLatestStories,
-} from "@/src/app/stories/useStories";
+import { useFeaturedStories } from "@/src/app/stories/useStories";
 import H1 from "@/src/components/UI/H1";
 import { StoryCard } from "../stories/StoryCard/StoryCard";
 import { useEffect, useState } from "react";

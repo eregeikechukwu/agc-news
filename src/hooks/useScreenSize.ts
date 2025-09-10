@@ -1,4 +1,3 @@
-import { se } from "date-fns/locale";
 import { useEffect, useState } from "react";
 
 export default function useScreenSize() {

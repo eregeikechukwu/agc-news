@@ -21,7 +21,7 @@ export default function CategoryStoriesFetcher({
     categoryKey: categoryId,
     isCategoryPending,
     categoryError,
-    isCategoryError,
+    // isCategoryError,
   } = useMappedCategoryKey(categoryKey);
 
   const { isMobile, isTablet } = useScreenSize();

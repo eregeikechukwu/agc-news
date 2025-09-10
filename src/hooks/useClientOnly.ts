@@ -5,7 +5,7 @@ export function useClientOnly<T>(callback: () => T): T | null {
 
   useEffect(() => {
     setValue(callback());
-  }, []);
+  }, [callback]);
 
   return value;
 }

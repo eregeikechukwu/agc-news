@@ -7,8 +7,6 @@ import styles from "./styles.module.scss";
 import { navCategories1, headerItems } from "@/src/utils/appHeaderItems";
 import TwoWayToggle from "../../UI/tabsToggle";
 import Logo from "../../UI/logo";
-import Weather from "../../UI/Weather";
-import { Cloudy } from "lucide-react";
 
 function Menu({
   isMenuOpen,

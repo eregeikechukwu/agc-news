@@ -2,7 +2,6 @@ import { useQuery, type UseQueryResult } from "@tanstack/react-query";
 import { apiClient } from "./api-client";
 import type {
   Story,
-  Category,
   ApiResponse,
   StoryObject,
   CategoryObject,

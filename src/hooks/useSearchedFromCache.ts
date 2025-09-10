@@ -72,7 +72,6 @@ export function useSearchFromCache() {
   const seen = new Set();
   const results = getAllCachedStories()
     .filter((story) => {
-      const query = searchQuery.toLowerCase();
       return (
         story?.title?.toLowerCase().includes(debouncedQuery) ||
         story?.content?.toLowerCase().includes(debouncedQuery)

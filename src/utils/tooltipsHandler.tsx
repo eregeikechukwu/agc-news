@@ -39,6 +39,7 @@ export function useTooltipsHandler(action: "copy" | "bookmark") {
             url: window.location.href,
           });
         } catch (err) {
+          console.error("Error sharing:", err);
           alert("Sharing is not supported in this browser");
         } finally {
           setIsSharing(false);

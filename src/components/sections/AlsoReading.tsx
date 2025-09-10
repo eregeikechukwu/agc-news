@@ -22,7 +22,7 @@ export default function AlsoReading() {
     } else {
       setStories((stories) => [...stories, data?.data || []].flat());
     }
-  }, [data]);
+  }, [data, isMobile, isTablet]);
 
   return (
     <div className="mt-13">

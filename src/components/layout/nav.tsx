@@ -35,7 +35,7 @@ function Nav() {
   useEffect(() => {
     dispatch(closeSearch());
     dispatch(clearSearch());
-  }, [url]);
+  }, [url, dispatch]);
 
   const toggleMenu = useCallback(() => {
     if (!isSearchOpen) {
@@ -43,7 +43,7 @@ function Nav() {
       setIsMenuOpen((prev) => !prev);
       dispatch(toggleBackdrop());
     }
-  }, [isSearchOpen]);
+  }, [isSearchOpen, dispatch]);
 
   //Lock scrol when meu or search is open
   if (isMenuOpen || isSearchOpen) {
@@ -129,7 +129,11 @@ function Nav() {
               <Logo />
             </div>
             <div className="flex items-center gap-3">
-              <img src={"/images/ProfilePicture.png"} className="w-9 h-9" />
+              <img
+                alt="profile"
+                src={"/images/ProfilePicture.png"}
+                className="w-9 h-9"
+              />
               <Triangle fill="white" className="rotate-180 w-3 h-3" />
             </div>
             {/* Menu */}

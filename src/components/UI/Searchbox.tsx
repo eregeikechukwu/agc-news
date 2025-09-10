@@ -1,10 +1,9 @@
-import useClickOutside from "@/src/hooks/useClickOutside";
 import { useSearchFromCache } from "@/src/hooks/useSearchedFromCache";
 import { clearSearch } from "@/src/lib/slices/appSlice";
 import { Search, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React, { RefObject, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 
 export default function SearchBox({ isSearchOpen }: { isSearchOpen: boolean }) {
@@ -18,7 +17,7 @@ export default function SearchBox({ isSearchOpen }: { isSearchOpen: boolean }) {
       inputRef.current.focus();
     }
     if (isSearchOpen) dispatch(clearSearch());
-  }, [isSearchOpen]);
+  }, [isSearchOpen, dispatch]);
 
   return (
     <div

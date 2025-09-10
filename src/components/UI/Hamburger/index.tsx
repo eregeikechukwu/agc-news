@@ -1,6 +1,4 @@
-import { useAppDispatch, useAppSelector } from "@/src/hooks/reduxHooks";
 import styles from "./hamburger.module.scss";
-import { toggleBackdrop } from "@/src/lib/slices/appSlice";
 
 export default function Hamburger({
   toggleMenu,

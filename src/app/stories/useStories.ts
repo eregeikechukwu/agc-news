@@ -13,9 +13,7 @@ import {
 } from "@/src/lib/api/news-api"; // update this path if needed
 
 import type {
-  Category,
   Story,
-  ApiResponse,
   StoryObject,
   CategoryObject,
   CategoryStoryObject,

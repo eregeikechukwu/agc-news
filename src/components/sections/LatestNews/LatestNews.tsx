@@ -1,11 +1,7 @@
 "use client";
 
-import { CategoryGroup } from "@/src/components/categories/categoryGroup";
 import { useLatestStories } from "../../../app/stories/useStories";
-import H1 from "@/src/components/UI/H1";
-import PaginationTabs from "@/src/components/UI/PaginationTabs";
 import { useEffect, useState } from "react";
-import LatestNewsSkeleton from "@/src/components/skeletons/LatestStoriesSkeleton";
 import { Story, StoryObject } from "@/src/lib/types/api-types";
 import StoryCarouselTemplate from "../../stories/StoryCarouselTemplate";
 import useScreenSize from "@/src/hooks/useScreenSize";
@@ -28,7 +24,7 @@ export default function LatestNews() {
     } else {
       setStories((stories) => [...stories, data?.data || []].flat());
     }
-  }, [data]);
+  }, [data, isMobile, isTablet]);
 
   return (
     <StoryCarouselTemplate
