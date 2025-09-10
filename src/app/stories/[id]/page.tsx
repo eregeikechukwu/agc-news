@@ -1,10 +1,36 @@
 import Head from "next/head";
 import StoryPageWrapper from "@/src/components/wrappers/StoryPageWrapper";
+import { Metadata } from "next";
+
+export const generateMetadata = async ({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> => {
+  const storyId = (await params).id;
+
+  const res = await fetch(
+    `https://api.agcnewsnet.com/api/general/stories/${storyId}`
+  );
+  const story = await res.json();
+
+  return {
+    title: story.data.title,
+    description: story.data.description,
+    openGraph: {
+      title: story.data.title,
+      description: story.data.description,
+      url: `https://agc-news-nelson-erege.vercel.app/stories/${story.data.id}`,
+      images: [story.data.banner_image],
+      type: "article",
+    },
+  };
+};
 
 export default async function StoryPage({
   params,
 }: {
-  params: Promise<{ id: string }> ;
+  params: Promise<{ id: string }>;
 }) {
   const { id: storyId } = await params;
 
