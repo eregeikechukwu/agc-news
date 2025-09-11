@@ -6,12 +6,15 @@ import H1 from "../../UI/H1";
 import CategoryStory from "../../categories/CategoryStory";
 import PaginationTabs from "../../UI/PaginationTabs";
 import Image from "next/image";
-import CategoryPageSkeleton from "../../skeletons/CategoryPageSkeleton";
+import CategoryPageSkeleton, {
+  OtherStoriesSkeleton,
+} from "../../skeletons/CategoryPageSkeleton";
 import { useCategoryVitals } from "@/src/hooks/useCategoryVitals";
 import useMappedCategoryKey from "@/src/hooks/useMappedCategoryKey";
 import NoStories from "../../Fallbacks/NoStories";
 import useScreenSize from "@/src/hooks/useScreenSize";
 import { useRef } from "react";
+import StoryCardSkeleton from "../../skeletons/TopStoriesSkeleton";
 
 export default function CategoryStoriesFetcher({
   categoryKey,
@@ -34,33 +37,25 @@ export default function CategoryStoriesFetcher({
     currentPage,
     totalItems,
     totalPages,
-    isFirstPage,
     setCurrentPage,
-    isFirstPending,
-    isPagedPending,
-    firstError,
-    pagedError,
-    isFirstError,
-    isPagedError,
     noOfItemsFetched,
+    isStoriesError,
+    isFirstStoriesPending,
+    isOtherStoriesPending,
     ads,
   } = useCategoryVitals(categoryId);
 
-  if (firstError || pagedError || isFirstError || isPagedError || categoryError)
-    return <ErrorFallback />;
+  if (isStoriesError || categoryError) return <ErrorFallback />;
 
-  console.log(categoryId, " mmmmm");
+  console.log(otherStories, " mmmmm");
 
   if (!categoryId) {
     return <NoStories title={categoryKey} />;
   }
 
-  if (
-    isCategoryPending ||
-    (isFirstPage && isFirstPending) ||
-    (!isFirstPage && isPagedPending)
-  )
-    return <CategoryPageSkeleton />;
+  if (isCategoryPending) return <CategoryPageSkeleton />;
+
+  console.log(isOtherStoriesPending, " am stil pendingo ");
 
   const scrollToTop = () => {
     setTimeout(() => {
@@ -95,46 +90,54 @@ export default function CategoryStoriesFetcher({
 
   return (
     <div>
-      <div className={`${styles.storygrid} md:mt-12 mt-8`}>
-        {latestStories?.map((story, i) => (
-          <StoryCard
-            key={story.id}
-            latest={i === 0}
-            variant="grid"
-            story={story}
-          />
-        ))}
-      </div>
+      {/* Top Grid (Latest Stories) */}
+      {isFirstStoriesPending ? (
+        <StoryCardSkeleton />
+      ) : (
+        <div className={`${styles.storygrid} md:mt-12 mt-8`}>
+          {latestStories?.map((story, i) => (
+            <StoryCard
+              key={story.id}
+              latest={i === 0}
+              variant="grid"
+              story={story}
+            />
+          ))}
+        </div>
+      )}
 
       <div ref={OtherStoriesRef} className="mt-18">
         <H1 highlight="#813D97">
-          OTHER STORIES IN{" "}
-          {latestStories?.[0]?.category?.category_name.toUpperCase() ||
-            otherStories?.[0]?.category?.category_name.toUpperCase()}
+          OTHER STORIES IN {categoryKey.toUpperCase()}
         </H1>
 
-        <div className="mt-8 flex lg:flex-row flex-col gap-10">
-          <div className="flex-1 h-auto flex flex-col gap-8 ">
-            {otherStories?.map((story, i) => (
-              <CategoryStory key={i} story={story} />
-            ))}
+        {/* Other stories and ads */}
+        {isOtherStoriesPending ? (
+          <OtherStoriesSkeleton />
+        ) : (
+          <div className="mt-8 flex lg:flex-row flex-col gap-10">
+            <div className="flex-1 h-auto flex flex-col gap-8 ">
+              {otherStories?.map((story, i) => (
+                <CategoryStory key={i} story={story} />
+              ))}
+            </div>
+            {!isMobile && !isTablet && <Ads />}
           </div>
-          {!isMobile && !isTablet && <Ads />}
+        )}
+
+        <div onClick={scrollToTop} className="lg:mt-26 mt-12 w-fit mr-full">
+          <PaginationTabs
+            variant="large"
+            totalItems={totalItems}
+            currentPage={currentPage}
+            totalPages={totalPages}
+            noOfItemsFetched={noOfItemsFetched}
+            onChange={(page) => setCurrentPage(page)}
+          />
         </div>
-      </div>
 
-      <div onClick={scrollToTop} className="lg:mt-26 mt-12 w-fit mr-full">
-        <PaginationTabs
-          variant="large"
-          totalItems={totalItems}
-          currentPage={currentPage}
-          totalPages={totalPages}
-          noOfItemsFetched={noOfItemsFetched}
-          onChange={(page) => setCurrentPage(page)}
-        />
+        {(isMobile || isTablet) && <Ads />}
       </div>
-
-      {(isMobile || isTablet) && <Ads />}
     </div>
   );
 }

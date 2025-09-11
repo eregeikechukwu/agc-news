@@ -12,7 +12,7 @@ export default function PaginationTabs({
 }: PaginationProps) {
   if (totalPages <= 1) return null;
 
-  console.log(totalPages, totalItems, " total pages");
+  // console.log(totalPages, totalItems, " total pages");
 
   const pages = getVisiblePages(currentPage, totalPages);
 

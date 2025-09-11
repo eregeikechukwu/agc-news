@@ -6,8 +6,8 @@ export const footerItems = [
   ],
   [
     { name: "Business", href: "/categories/business" },
-    { name: "Sport", href: "/categories/sport" },
-    { name: "Health", href: "/categories/health" },
+    { name: "Sport", href: "/categories/sports" },
+    { name: "Entertainment", href: "/categories/entertainment" },
   ],
   [
     { name: "Tech", href: "/categories/tech" },

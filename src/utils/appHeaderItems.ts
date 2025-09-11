@@ -59,7 +59,7 @@ export const navCategories1 = [
   { name: "Politics", path: "/categories/Politics" },
   { name: "Business", path: "/categories/business" },
   { name: "Sport", path: "/categories/sports" },
-  { name: "Health", path: "/categories/health" },
+  { name: "Entertainment", path: "/categories/entertainment" },
   { name: "Tech", path: "/categories/tech" },
   { name: "Opinion", path: "/category/opinion" },
 ];
