@@ -56,7 +56,7 @@ export function StoryCard({ variant, story, latest = false }: StoryCardProps) {
               className={`md:text-[1.3rem] font-nunito font-semibold leading-snug md:text-white ${
                 latest
                   ? "text-[1.38rem]"
-                  : "min-[560px]:!text-[1.3rem] text-[1rem] active:text-gray-400"
+                  : "min-[560px]:!text-[1.3rem] text-[1rem] active-story"
               }`}
             >
               {story.description}
@@ -115,7 +115,9 @@ export function StoryCard({ variant, story, latest = false }: StoryCardProps) {
             </button>
           </Link>
         </div>
-        <h3 className="text-2xl leading-snug mt-[0.8rem]">{story.title}</h3>
+        <h3 className="text-2xl active-story leading-snug mt-[0.8rem]">
+          {story.title}
+        </h3>
         <div className="flex gap-4 mt-[1.15rem]">
           <Tag variant="dark">{story.author}</Tag>
           <Tag variant="dark">

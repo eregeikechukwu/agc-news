@@ -292,3 +292,13 @@
     aspect-ratio: 5 / 3;
   }
 }
+
+//Active state of clicked story title
+.active-story {
+  &:active {
+    color: #db4f3a !important;
+    font-weight: 600 !important;
+  }
+
+  transition: all 0.4s;
+}

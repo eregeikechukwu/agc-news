@@ -63,11 +63,11 @@ export default function SearchBox({ isSearchOpen }: { isSearchOpen: boolean }) {
           results.map((item, i) => (
             <Link key={i} href={`/stories/${item.id}`}>
               <div
-                className="text-white items-center flex justify-between gap-2 cursor-pointer text-[0.75rem] rounded-[0.3rem] hover:bg-white/10 px-2 py-1"
+                className="text-white items-center flex justify-between gap-2 cursor-pointer text-[0.75rem] rounded-[0.3rem] transition-all active:bg-gray-800 hover:bg-white/10 px-2 py-1"
                 key={i}
               >
                 {item.title}
-                <div className="w-16 object-cover h-10">
+                <div className=" aspect-[9/6] object-cover h-12">
                   <Image
                     src={
                       item.banner_image.trim() ||
@@ -76,7 +76,7 @@ export default function SearchBox({ isSearchOpen }: { isSearchOpen: boolean }) {
                     alt={item?.title || ""}
                     width={400}
                     height={250}
-                    className="object-cover w-full h-full"
+                    className="object-cover  w-full h-full"
                   />
                 </div>
               </div>

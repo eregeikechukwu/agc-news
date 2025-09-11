@@ -75,7 +75,7 @@ export function StoryPage({ storyId }: StoryIdProp) {
               <button
                 disabled={isSharing}
                 onClick={() => handleClick("Copied to clipboard !")}
-                className="px-[0.94rem] flex gap-[0.38rem] h-10 text-white items-center rounded-full text-[0.94rem]  bg-[#3F62BC] hover:bg-[#3F62BCCC] cursor-pointer"
+                className="px-[0.94rem] flex gap-[0.38rem] h-10 text-white items-center rounded-full text-[0.94rem]  bg-[#3F62BC] hover:bg-[#3F62BCCC] active:bg-blue-600 cursor-pointer"
               >
                 <Share2 fill="white" stroke="white" className="w-4 h-4" />
                 Share
