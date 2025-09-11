@@ -12,15 +12,15 @@ export default function PaginationTabs({
 }: PaginationProps) {
   if (totalPages <= 1) return null;
 
-
   const pages = getVisiblePages(currentPage, totalPages);
 
   // const adjustedTotal = totalItems || 0;
 
+  // At the last page, teh start count would be based on the no of items actually diplayed
   const start =
     currentPage === totalPages
-      ? (currentPage - 2) * 5 + noI
-      : (currentPage - 1) * noI + 1;
+      ? (currentPage - 1) * 5
+      : (currentPage - 1) * 5 + 1;
   const end = Math.min(currentPage * 5, totalItems || 0);
 
   if (variant === "small") {
