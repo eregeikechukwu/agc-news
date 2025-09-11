@@ -7,18 +7,22 @@ export default function PaginationTabs({
   currentPage,
   totalPages,
   totalItems,
+  noOfItemsFetched: noI = 5,
   onChange,
 }: PaginationProps) {
   if (totalPages <= 1) return null;
 
-  const scrollToTop = () => {};
+  console.log(totalPages, totalItems, " total pages");
 
   const pages = getVisiblePages(currentPage, totalPages);
 
-  const adjustedTotal = (totalItems || 1) - 2 * totalPages;
+  // const adjustedTotal = totalItems || 0;
 
-  const start = (currentPage - 1) * 5 + 1;
-  const end = Math.min(currentPage * 5, adjustedTotal);
+  const start =
+    currentPage === totalPages
+      ? (currentPage - 2) * 5 + noI
+      : (currentPage - 1) * noI + 1;
+  const end = Math.min(currentPage * 5, totalItems || 0);
 
   if (variant === "small") {
     return (
@@ -69,7 +73,7 @@ export default function PaginationTabs({
       <div className="flex items-center justify-center ">
         {/* showing count */}
         <p className="md:text-[0.94rem] text-[0.75rem]">
-          Showing {start} - {end} of {adjustedTotal}
+          Showing {start} - {end} of {totalItems || 0}
         </p>
 
         <div className="flex items-center justify-center gap-2 ">

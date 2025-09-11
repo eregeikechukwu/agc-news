@@ -7,6 +7,8 @@ export function getVisiblePages(
   let start = Math.max(1, current - half);
   let end = start + maxVisible - 1;
 
+  console.log({ start, end, current, total });
+
   if (end > total) {
     end = total;
     start = Math.max(1, end - maxVisible + 1);

@@ -3,5 +3,6 @@ export type PaginationProps = {
   currentPage: number;
   totalPages: number;
   totalItems?: number;
+  noOfItemsFetched?: number;
   onChange: (newPage: number) => void;
 };

@@ -42,6 +42,7 @@ export default function CategoryStoriesFetcher({
     pagedError,
     isFirstError,
     isPagedError,
+    noOfItemsFetched,
     ads,
   } = useCategoryVitals(categoryId);
 
@@ -64,12 +65,12 @@ export default function CategoryStoriesFetcher({
   const scrollToTop = () => {
     setTimeout(() => {
       if (OtherStoriesRef.current) {
-        window.scrollTo({
-          top: OtherStoriesRef.current.offsetTop - 100,
-          behavior: "smooth",
-        });
+        // window.scrollTo({
+        //   top: OtherStoriesRef.current.offsetTop - 100,
+        //   behavior: "smooth",
+        // });
       } else {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        // window.scrollTo({ top: 0, behavior: "smooth" });
       }
     }, 400);
   };
@@ -128,6 +129,7 @@ export default function CategoryStoriesFetcher({
           totalItems={totalItems}
           currentPage={currentPage}
           totalPages={totalPages}
+          noOfItemsFetched={noOfItemsFetched}
           onChange={(page) => setCurrentPage(page)}
         />
       </div>
