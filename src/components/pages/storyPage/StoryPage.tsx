@@ -34,6 +34,7 @@ export function StoryPage({ storyId }: StoryIdProp) {
   const { categoryKey } = useMappedCategoryKey(
     data?.category?.category_name || ""
   );
+
   const { data: otherStories, isPending: isPagedPending } = useCategoryStories(
     categoryKey || "",
     1,
@@ -173,16 +174,20 @@ export function StoryPage({ storyId }: StoryIdProp) {
               )}
               {/* Ads */}
               <div className="md:mt-14 mt-10 flex flex-1 md:gap-20 gap-5 justify-between h-full md:flex-col ">
-                {ads.map((ad, index) => (
-                  <Image
-                    key={index}
-                    alt="ad"
-                    width={300}
-                    height={250}
-                    className="w-[80%] self-end imageEffect object-cover"
-                    src={ad.toLowerCase()}
-                  />
-                ))}
+                {ads.map((ad, index) => {
+                  //Get optimized ad image url
+                  const adUrl = useImage(ad);
+                  return (
+                    <Image
+                      key={index}
+                      alt="ad"
+                      width={300}
+                      height={250}
+                      className="w-[80%] self-end imageEffect object-cover"
+                      src={adUrl}
+                    />
+                  );
+                })}
               </div>
             </div>
           </div>
