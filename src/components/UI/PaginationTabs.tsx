@@ -7,14 +7,11 @@ export default function PaginationTabs({
   currentPage,
   totalPages,
   totalItems,
-  noOfItemsFetched: noI = 5,
   onChange,
 }: PaginationProps) {
   if (totalPages <= 1) return null;
 
   const pages = getVisiblePages(currentPage, totalPages);
-
-  // const adjustedTotal = totalItems || 0;
 
   // At the last page, teh start count would be based on the no of items actually diplayed
   const start =

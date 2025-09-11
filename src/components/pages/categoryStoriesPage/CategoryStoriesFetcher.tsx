@@ -38,7 +38,6 @@ export default function CategoryStoriesFetcher({
     totalItems,
     totalPages,
     setCurrentPage,
-    noOfItemsFetched,
     isStoriesError,
     isFirstStoriesPending,
     isOtherStoriesPending,
@@ -127,7 +126,6 @@ export default function CategoryStoriesFetcher({
             totalItems={totalItems}
             currentPage={currentPage}
             totalPages={totalPages}
-            noOfItemsFetched={noOfItemsFetched}
             onChange={(page) => setCurrentPage(page)}
           />
         </div>

@@ -106,10 +106,6 @@ export function useCategoryVitals(categoryKey: string) {
     ...(pagedData?.data?.data.slice(0, 4) || []),
   ];
 
-  console.log("firstPageData ", firstPageData?.data.data);
-  // console.log("PatchedData ", patchData?.data.data);
-  // console.log("PageData ", pagedData?.data.data);
-
   const latestStories = firstPageData?.data?.data?.slice(0, 4); // 4 latest
 
   const otherStories = useMemo(() => {
@@ -124,12 +120,6 @@ export function useCategoryVitals(categoryKey: string) {
   const totalItems = (firstPageData?.data?.meta.total || 1) - 4;
   const totalPages = Math.ceil(totalItems / 5);
 
-  // const totalItems =
-  //     (firstPageData?.meta.total || pagedData?.meta.total || 1) - 4;
-  //   const totalPages =
-  //     (pagedData?.meta.last_page || 1) - 1 ||
-  //     (firstPageData?.meta.last_page || 1) - 1;
-
   //General Pending/loading state for other stories
   const isOtherStoriesPending = isPagedPending || isPatchPending;
 
@@ -139,9 +129,6 @@ export function useCategoryVitals(categoryKey: string) {
   //General Error state for all neded stories
   const isStoriesError =
     isFirstError || isPagedError || firstError || PatchError || pagedError;
-
-  //Number of items that were fteched/to b edisplayed for ther other stories section
-  const noOfItemsFetched = newOtherStories.length;
 
   console.log("noOfItemsFethed ", otherStories?.length);
   const ads = useAds("categoryAds");
@@ -156,7 +143,6 @@ export function useCategoryVitals(categoryKey: string) {
     currentPage,
     setCurrentPage,
     isStoriesError,
-    noOfItemsFetched,
     ads,
   };
 }
