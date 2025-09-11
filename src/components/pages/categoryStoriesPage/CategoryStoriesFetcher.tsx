@@ -48,7 +48,7 @@ export default function CategoryStoriesFetcher({
   if (firstError || pagedError || isFirstError || isPagedError || categoryError)
     return <ErrorFallback />;
 
-console.log(categoryId, " mmmmm")
+  console.log(categoryId, " mmmmm");
 
   if (!categoryId) {
     return <NoStories title={categoryKey} />;
@@ -63,7 +63,7 @@ console.log(categoryId, " mmmmm")
 
   const scrollToTop = () => {
     setTimeout(() => {
-      if (otherStories && OtherStoriesRef.current) {
+      if (OtherStoriesRef.current) {
         window.scrollTo({
           top: OtherStoriesRef.current.offsetTop - 100,
           behavior: "smooth",
