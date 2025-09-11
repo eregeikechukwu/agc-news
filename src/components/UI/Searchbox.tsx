@@ -10,8 +10,6 @@ export default function SearchBox({ isSearchOpen }: { isSearchOpen: boolean }) {
   const { results, handleSearch, searchQuery } = useSearchFromCache();
   const dispatch = useDispatch();
 
-  console.log({ results });
-
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {

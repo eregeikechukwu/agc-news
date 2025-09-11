@@ -42,7 +42,7 @@ export default function MissedStories() {
           <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 sm:gap-12 gap-5">
             {missedStories?.slice(0, 4).map((story, i) => (
               <Link key={i} href={`/stories/${story.id}`}>
-                <div className="flex gap-3 ">
+                <div className="flex gap-3 active:bg-gray-200 hover:bg-gray-100 transition-all rounded-xl p-4 cursor-pointer">
                   <span className="h-[0.94rem] min-w-[0.94rem] bg-[#282828] mt-1 rounded-xs"></span>
                   <div>
                     <p className="font-nunito">{story.title}</p>

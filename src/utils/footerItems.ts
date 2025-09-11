@@ -16,7 +16,7 @@ export const footerItems = [
   ],
   [
     { name: "Photos", href: "/categories/photos" },
-    { name: "AGC Archive", href: "/under-construction" },
+    { name: "AGC Bookmarks", href: "/bookmarks" },
     { name: "Privacy Policy", href: "/under-construction" },
   ],
   [

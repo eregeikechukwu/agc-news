@@ -47,25 +47,21 @@ export default function CategoryStoriesFetcher({
 
   if (isStoriesError || categoryError) return <ErrorFallback />;
 
-  console.log(otherStories, " mmmmm");
-
   if (!categoryId) {
     return <NoStories title={categoryKey} />;
   }
 
   if (isCategoryPending) return <CategoryPageSkeleton />;
 
-  console.log(isOtherStoriesPending, " am stil pendingo ");
-
   const scrollToTop = () => {
     setTimeout(() => {
       if (OtherStoriesRef.current) {
-        // window.scrollTo({
-        //   top: OtherStoriesRef.current.offsetTop - 100,
-        //   behavior: "smooth",
-        // });
+        window.scrollTo({
+          top: OtherStoriesRef.current.offsetTop - 100,
+          behavior: "smooth",
+        });
       } else {
-        // window.scrollTo({ top: 0, behavior: "smooth" });
+        window.scrollTo({ top: isMobile ? 960 : 830, behavior: "smooth" });
       }
     }, 400);
   };

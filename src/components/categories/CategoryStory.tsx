@@ -48,11 +48,12 @@ export default function CategoryStory({ story }: { story: Story }) {
           href={`/stories/${story.id}`}
         >
           {isMobile ? (
-            <button className="text-red-500  cursor-pointer  mt-3 font-bold text-[0.81rem]">
-              Continue reading &rarr;{" "}
+            <button className="group text-red-500 active:text-red-200 cursor-pointer transition-all mt-3 font-bold text-[0.81rem]">
+              Continue reading{" "}
+              <span className="group-active:animate-ping">&rarr; </span>
             </button>
           ) : (
-            <button className="bg-black/10 rounded-full text-[0.81rem] hover:bg-black/50 active:bg-black/30 w-36 h-10 box-border border-[0.06rem] border-[#999999]">
+            <button className="bg-gray-300 rounded-full text-[0.81rem] hover:bg-black/40 cursor-pointer transition-all active:bg-black/30 w-36 h-10 box-border border-[0.06rem] border-[#999999]">
               Continue reading
             </button>
           )}

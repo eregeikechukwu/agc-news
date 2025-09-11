@@ -56,7 +56,7 @@ export function StoryCard({ variant, story, latest = false }: StoryCardProps) {
               className={`md:text-[1.3rem] font-nunito font-semibold leading-snug md:text-white ${
                 latest
                   ? "text-[1.38rem]"
-                  : "min-[560px]:!text-[1.3rem] text-[1rem]"
+                  : "min-[560px]:!text-[1.3rem] text-[1rem] active:text-gray-400"
               }`}
             >
               {story.description}

@@ -1,5 +1,7 @@
 //  Story (news article) object
 
+import { UseQueryResult } from "@tanstack/react-query";
+
 export interface MainStory {
   id: number;
   author?: string;
@@ -107,3 +109,9 @@ export interface AppState {
 export interface BookmarkState {
   bookmarkedStories: string[];
 }
+
+//Specially for use CategoryStories
+export type UseCategoryStoriesResult = UseQueryResult<
+  ApiResponse<CategoryStoryObject>,
+  Error
+>;

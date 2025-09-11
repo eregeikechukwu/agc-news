@@ -27,8 +27,6 @@ export default function AppHeader() {
     day: "numeric",
   };
 
-  // console.log(isTablet && "I am a tablet user");
-
   const dateString = date.toLocaleDateString("en-US", options);
 
   return (

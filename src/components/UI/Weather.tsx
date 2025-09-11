@@ -29,9 +29,6 @@ export default function Weather() {
     unit: "metric",
   });
 
-  console.log("API key", process.env.NEXT_PUBLIC_WEATHER_API_KEY);
-
-  console.log(position);
   return (
     <canvas>
       <ReactWeather

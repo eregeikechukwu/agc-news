@@ -14,6 +14,7 @@ import OthersGridItem from "../UI/OthersGridItem";
 import NewsCategorySkeleton from "../skeletons/NewsCategorySkeleton";
 import ErrorFallback from "../Fallbacks/ErrorFallback";
 import useScreenSize from "@/src/hooks/useScreenSize";
+import Link from "next/link";
 
 export default function CategoriesSection() {
   const { data, isPending, isError, error } = useCategories();
@@ -65,7 +66,6 @@ export default function CategoriesSection() {
 
 function CategoryTab({ name, stories }: { name: string; stories: Story[] }) {
   const { isMobile } = useScreenSize();
-  console.log("Category Stories: ", isMobile);
 
   if (!stories) return <div>loading...</div>;
 
@@ -82,9 +82,11 @@ function CategoryTab({ name, stories }: { name: string; stories: Story[] }) {
 
   return (
     <div className=" border-y-[0.06rem] pt-[1.31rem] pb-[1.19rem] border-y-[#c8c8c8]">
-      <H1 chevron={true} highlight="#813D97">
-        {name}
-      </H1>
+      <Link href={`/categories/${name.toLowerCase()}`}>
+        <H1 chevron={true} highlight="#813D97">
+          {name}
+        </H1>
+      </Link>
       <div className="mt-4 gap-8 lg:flex-row flex-col flex">
         <div className="basis-[59.41%] relative">
           {stories[0] && (

@@ -57,7 +57,6 @@ export const appSlice = createSlice({
       state.isSearchOpen = !state.isSearchOpen;
     },
     closeSearch: (state) => {
-      console.log("CLOSING SEARCH");
       state.isBackdropVisible = false;
       state.isSearchOpen = false;
     },

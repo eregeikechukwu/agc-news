@@ -1,6 +1,10 @@
 "use client";
 
-import { useQuery, type UseQueryResult } from "@tanstack/react-query";
+import {
+  keepPreviousData,
+  useQuery,
+  type UseQueryResult,
+} from "@tanstack/react-query";
 import {
   fetchCategories,
   fetchTopStories,
@@ -17,6 +21,8 @@ import type {
   StoryObject,
   CategoryObject,
   CategoryStoryObject,
+  UseCategoryStoriesResult,
+  ApiResponse,
 } from "@/src/lib/types/api-types";
 
 //
@@ -129,6 +135,20 @@ export function useCategoryStories(
   categoryId: string,
   page = 1,
   perPage = 15
+): UseQueryResult<ApiResponse<CategoryStoryObject>, Error> {
+  return useQuery<ApiResponse<CategoryStoryObject>, Error>({
+    queryKey: ["category-stories", categoryId, page, perPage],
+    queryFn: () => fetchCategoryStories(categoryId, page, perPage),
+    enabled: !!categoryId,
+    staleTime: 3 * 60 * 1000,
+    placeholderData: keepPreviousData, // 👈 v5 replacement for keepPreviousData
+  });
+}
+/** 
+export function useCategoryStories(
+  categoryId: string,
+  page = 1,
+  perPage = 15
 ): UseQueryResult<CategoryStoryObject, Error> {
   return useQuery({
     queryKey: ["category-stories", categoryId, page, perPage],
@@ -139,7 +159,8 @@ export function useCategoryStories(
     enabled: !!categoryId,
     staleTime: 3 * 60 * 1000,
   });
-}
+} 
+  **/
 
 //
 // Single Story

@@ -22,7 +22,7 @@ import useMappedCategoryKey from "@/src/hooks/useMappedCategoryKey";
 import { useAds } from "@/src/app/features/ads/useAds";
 import AlsoReading from "../../sections/AlsoReading";
 import StorySkeleton from "../../skeletons/StorySkeleton";
-import {  MissedStories } from "../../sections";
+import { MissedStories } from "../../sections";
 import OtherStoriesSkeleton from "../../skeletons/OtherStoriesSkeleton";
 import { useTooltipsHandler } from "@/src/utils/tooltipsHandler";
 import { useImage } from "@/src/hooks/useImage";
@@ -31,7 +31,9 @@ import { toggleBookmark } from "@/src/lib/slices/bookmarkSlice";
 
 export function StoryPage({ storyId }: StoryIdProp) {
   const { data, isPending, error, isError } = useStoryById(storyId);
-  const { categoryKey } = useMappedCategoryKey(data?.category?.category_name || '');
+  const { categoryKey } = useMappedCategoryKey(
+    data?.category?.category_name || ""
+  );
   const { data: otherStories, isPending: isPagedPending } = useCategoryStories(
     categoryKey || "",
     1,
@@ -134,10 +136,16 @@ export function StoryPage({ storyId }: StoryIdProp) {
                 </button>
               </div>
               <article className="prose text-[1.25rem] !w-full  prose-md">
-                <div dangerouslySetInnerHTML={{ __html: data?.content ?? "" }}></div>
+                <div
+                  dangerouslySetInnerHTML={{ __html: data?.content ?? "" }}
+                ></div>
               </article>
               {/* socials */}
-              <div className="mt-5 flex gap-3">
+
+              <div
+                onClick={() => handleClick("Copied to clipboard !")}
+                className="mt-5 flex gap-3"
+              >
                 <TwitterIcon
                   stroke="black"
                   className="w-6 cursor-pointer h-6"
@@ -146,10 +154,7 @@ export function StoryPage({ storyId }: StoryIdProp) {
                 <Facebook stroke="black" className="w-6 cursor-pointer h-6" />
                 <Chrome stroke="black" className="w-6 cursor-pointer h-6" />
                 <Linkedin stroke="black" className="w-6 cursor-pointer h-6" />
-                <LinkIcon
-                  onClick={() => handleClick("Copied to clipboard !")}
-                  className="w-6  cursor-pointer h-6"
-                />
+                <LinkIcon className="w-6  cursor-pointer h-6" />
               </div>
             </div>
             {/* Ads and top stories */}
@@ -160,7 +165,7 @@ export function StoryPage({ storyId }: StoryIdProp) {
                 <div>
                   <h1 className="text-[1.13rem] font-bold">TOP STORIES</h1>
                   <div className="mt-6 ">
-                    {otherStories?.data.slice(0, 4).map((story) => (
+                    {otherStories?.data?.data?.slice(0, 4).map((story) => (
                       <OthersGridItem story={story} key={story.id} />
                     ))}
                   </div>

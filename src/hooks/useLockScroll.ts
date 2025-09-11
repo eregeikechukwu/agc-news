@@ -9,11 +9,9 @@ export default function useLockScroll(): () => void {
     if (!isLocked) {
       document.body.style.overflowY = "hidden";
       setIsLocked(true);
-      console.log(isLocked);
     } else {
       document.body.style.overflowY = "scroll";
       setIsLocked(false);
-      console.log(isLocked);
     }
   };
 
