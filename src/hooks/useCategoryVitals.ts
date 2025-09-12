@@ -85,7 +85,7 @@ export function useCategoryVitals(categoryKey: string) {
     isPending: isFirstPending,
     error: firstError,
     isError: isFirstError,
-  } = useCategoryStories(categoryKey, 1); // First fetch: 9 items
+  } = useCategoryStories(categoryKey, 1, 9); // First fetch: 9 items
 
   const {
     data: patchData,
@@ -115,7 +115,7 @@ export function useCategoryVitals(categoryKey: string) {
       return newOtherStories || pagedData?.data?.data.slice(0, 4); // 5 others from subsequent fetches
     }
   }, [isFirstPage, firstPageData, pagedData, newOtherStories]);
-  console.log("newOtherStories ", otherStories);
+
 
   const totalItems = (firstPageData?.data?.meta.total || 1) - 4;
   const totalPages = Math.ceil(totalItems / 5);
@@ -130,7 +130,6 @@ export function useCategoryVitals(categoryKey: string) {
   const isStoriesError =
     isFirstError || isPagedError || firstError || PatchError || pagedError;
 
-  console.log("noOfItemsFethed ", otherStories?.length);
   const ads = useAds("categoryAds");
 
   return {
