@@ -8,7 +8,7 @@ export default function CategoryStoriesPage({
 }: CategoryStoriesPageProps) {
   return (
     <section>
-      <h1 className="md:text-[2.63rem] sm:text-[2.2rem] text-[1.8rem] font-semibold md:mt-16 mt-8">
+      <h1 className="md:text-[2.63rem] text-[2.3rem] font-semibold md:mt-16 mt-8">
         Latest on {categoryId}
       </h1>
       <CategoryStoriesFetcher categoryKey={categoryId} />
