@@ -68,7 +68,7 @@ export default function CategoryStoriesFetcher({
   //Ads
   function Ads() {
     return (
-      <div className="lg:basis-[18.5rem] max-lg:mt-40 lg:w-fit w-full flex lg:flex-col flex-row lg:gap-10 gap-4">
+      <div className="lg:basis-[18.5rem] max-lg:mt-30 lg:w-fit w-full flex lg:flex-col flex-row lg:gap-10 gap-4">
         {ads.map((src, i) => (
           <Image
             key={i}
