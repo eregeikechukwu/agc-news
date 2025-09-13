@@ -52,6 +52,13 @@ function Menu({
       </div>
       <div className="mt-20">
         {/*two way toggle goes here */}
+        <TwoWayToggle
+          options={["Pages", "Categories"]}
+          value={tab}
+          onChange={changeTab}
+          size="md"
+        />
+        
         {/* <Weather /> */}
 
         {/*menu list */}
