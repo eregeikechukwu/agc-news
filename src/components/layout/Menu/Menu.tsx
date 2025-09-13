@@ -7,6 +7,7 @@ import styles from "./styles.module.scss";
 import { navCategories1, headerItems } from "@/src/utils/appHeaderItems";
 import TwoWayToggle from "../../UI/tabsToggle";
 import Logo from "../../UI/logo";
+import Link from "next/link";
 
 function Menu({
   isMenuOpen,
@@ -70,7 +71,11 @@ function Menu({
           </ul>
         </div>
       </div>
-    </div>
+      <Link href="https://nelson-erege-portfolio.vercel.app">
+        <span className="h-5 w-5 mr-3">&copy;</span>
+        Code by Nelson
+      </div>
+    </Link>
   );
 }
 export default memo(Menu);
