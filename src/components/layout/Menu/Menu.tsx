@@ -71,7 +71,7 @@ function Menu({
           </ul>
         </div>
       </div>
-      <Link href="https://nelson-erege-portfolio.vercel.app">
+      <Link href="https://nelson-erege-portfolio.vercel.app" className="!mt-auto">
         <span className="h-5 w-5 mr-3">&copy;</span>
         Code by Nelson
       </div>
