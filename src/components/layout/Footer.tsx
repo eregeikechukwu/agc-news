@@ -32,7 +32,7 @@ export default function Footer() {
         <div className="relative mt-[1.56rem] h-12">
           <label className="hidden" htmlFor="search"></label>
           <input
-          onClick={() => dispatch(toggleSearch())}
+            onClick={() => dispatch(toggleSearch())}
             id="search"
             className=" h-full pl-3 pr-[3.38rem] outline-0 w-full rounded-[0.31rem] bg-white"
             type="text"
@@ -58,9 +58,17 @@ export default function Footer() {
           ))}
         </div>
         {/* copyright */}
-        <p className="md:mt-13 text-center mt-[5.375rem] text-white">
-          © 2025 AGC Newsnet. All Rights Reserved.
-        </p>
+        <div className="md:mt-13 flex justify-center gap-10 w-full mt-[5.375rem]  text-white">
+          <p className=" text-center">
+            © 2025 AGC Newsnet. All Rights Reserved.
+          </p>
+          <Link
+            className="md:block hidden"
+            href={"https://nelson-erege-portfolio.vercel.app/"}
+          >
+            &copy; Code by Nelson
+          </Link>
+        </div>
       </div>
     </section>
   );

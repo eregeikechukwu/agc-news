@@ -17,24 +17,50 @@ class ApiClient {
    * @returns Promise with the API response
    */
   async get<T>(endpoint: string, timeout = 10000): Promise<T> {
-    const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), timeout);
+    const url = `${this.baseUrl}${endpoint}`;
 
-    try {
-      const response = await fetch(`${this.baseUrl}${endpoint}`, {
-        signal: controller.signal,
-      });
+    // If AbortController exists, use it
+    if (typeof AbortController !== "undefined") {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), timeout);
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      try {
+        const response = await fetch(url, { signal: controller.signal });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        return (await response.json()) as T;
+      } catch (error) {
+        if ((error as Error).name === "AbortError") {
+          console.error(`⏱ Request to ${url} timed out after ${timeout}ms`);
+          throw new Error("Request timed out. Please try again.");
+        }
+        console.error(`Fetch error for ${url}:`, error);
+        throw error;
+      } finally {
+        clearTimeout(timer);
       }
-      clearTimeout(timer);
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error(`API Error for ${endpoint}:`, error);
-      throw error;
     }
+
+    //  Fallback for environments where AbortController isn't respected (mobile Safari, some WebViews)
+    console.warn("⚠️ AbortController not supported, using fallback timeout.");
+
+    return Promise.race([
+      fetch(url).then(async (response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return (await response.json()) as T;
+      }),
+      new Promise<never>((_, reject) =>
+        setTimeout(
+          () => reject(new Error(`Timeout after ${timeout}ms`)),
+          timeout
+        )
+      ),
+    ]);
   }
 
   /**
