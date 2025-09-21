@@ -116,6 +116,7 @@ export default function CategoryStoriesFetcher({
                 <CategoryStory key={i} story={story} />
               ))}
             </div>
+
             {!isMobile && !isTablet && <Ads />}
           </div>
         )}
