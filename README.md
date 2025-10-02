@@ -37,6 +37,7 @@ _Coming soon..._
   - Top Stories
   - Editor's Picks
   - Featured Stories
+  - Category groups 
 - ✅ Horizontal category tab navigation
 - ✅ Dynamic story detail page (`/stories/[id]`)
 - ✅ Bookmark system (toggleable, persistent via localStorage)
