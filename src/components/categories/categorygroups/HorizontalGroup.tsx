@@ -31,7 +31,7 @@ export default function HorizontalGroup({
             <p className="text-xl text-white">{item.description}</p>
           </div>
         </Link>
-        <Link href={`/categories/${item.category?.category_name}`}>
+        <Link href={`/categories/${item.category?.category_name?.toLowerCase()}`}>
           <button className="category_button">
             {item.category?.category_name}
           </button>

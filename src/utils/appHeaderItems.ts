@@ -56,7 +56,7 @@ export const socials = [
 export const navCategories1 = [
   { name: "Home", path: "/" },
   { name: "Africa", path: "/categories/africa" },
-  { name: "Politics", path: "/categories/Politics" },
+  { name: "Politics", path: "/categories/politics" },
   { name: "Business", path: "/categories/business" },
   { name: "Sport", path: "/categories/sports" },
   { name: "Entertainment", path: "/categories/entertainment" },
@@ -69,3 +69,6 @@ export const navCategories2 = [
   { name: "Videos", path: "category/videos" },
   { name: "Audio", path: "category/audio" },
 ];
+
+export const categoryIds = [1, 2, 3, 4];
+export const categoryNames = ["politics", "business", "entertainment", "sports"];

@@ -2,7 +2,7 @@ export const footerItems = [
   [
     { name: "Home", href: "/" },
     { name: "Africa", href: "/categories/africa" },
-    { name: "Politics", href: "/categories/Politics" },
+    { name: "Politics", href: "/categories/politics" },
   ],
   [
     { name: "Business", href: "/categories/business" },

@@ -7,7 +7,10 @@ import { Footer } from "../components/sections";
 import BackDrop from "../components/UI/Backdrop";
 
 export const metadata: Metadata = {
-  title: "AGC",
+  title: {
+    default: "AGC",
+    template: "%s - AGC",
+  },
   description:
     "Stay updated with the latest news and insights around Africa on AGC news",
 };

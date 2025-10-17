@@ -3,6 +3,29 @@ import StoryPageWrapper from "@/src/components/wrappers/StoryPageWrapper";
 // import {StoryObject} from "@/src/"
 import { Metadata } from "next";
 import { ApiResponse, Story, StoryObject } from "@/src/lib/types/api-types";
+import { getStoriesStaticParams } from "@/src/utils/getStaticParamsItems";
+
+// export const metadata: Promise<Metadata> = async ({params,} : {params: Promise<{id: string}>}) => {
+//   const storyId = (await params).id;
+
+//   const res = await fetch(
+//     `https://api.agcnewsnet.com/api/general/stories/${storyId}`
+//   );
+
+//   const story = await res.json();
+
+//   return {
+//     title: story.data.title,
+//     description: story.data.description,
+//     openGraph: {
+//       title: story.data.title,
+//       description: story.data.description,
+//       url: `https://agc-news-nelson-erege.vercel.app/stories/${story.data.id}`,
+//       images: [story.data.banner_image],
+//       type: "article",
+//     },
+//   }
+// };
 
 export const generateMetadata = async ({
   params,
@@ -30,6 +53,11 @@ export const generateMetadata = async ({
   };
 };
 
+export async function generateStaticParams() {
+  const allLoadedStories = await getStoriesStaticParams();
+  return allLoadedStories;
+}
+
 export default async function StoryPage({
   params,
 }: {
@@ -46,9 +74,10 @@ export default async function StoryPage({
     );
     story = res.ok ? await res.json() : null; // dont throw error
   } catch (error) {
-   throw new Error("Failed to load page data.")
+    throw new Error("Failed to load page data.");
     story = null;
   }
+
 
   return (
     <>
