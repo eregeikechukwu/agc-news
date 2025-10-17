@@ -46,5 +46,17 @@ export default async function CategoryPage({
 }) {
   const { id: categoryId } = await params;
 
-  return <CategoriesPageWrapper categoryId={categoryId} />;
+  return (
+    <html>
+      <head>
+        <meta
+          name="google-site-verification"
+          content="googlea264a916086e83a6"
+        />
+      </head>
+      <body>
+        <CategoriesPageWrapper categoryId={categoryId} />
+      </body>
+    </html>
+  );
 }

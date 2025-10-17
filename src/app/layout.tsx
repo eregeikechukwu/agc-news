@@ -5,15 +5,10 @@ import { AppHeader } from "../components/layout";
 import { Providers } from "./providers";
 import { Footer } from "../components/sections";
 import BackDrop from "../components/UI/Backdrop";
+import { metaJson, main_metadata } from "../utils/metadata";
+import Script from "next/script";
 
-export const metadata: Metadata = {
-  title: {
-    default: "AGC",
-    template: "%s - AGC",
-  },
-  description:
-    "Stay updated with the latest news and insights around Africa on AGC news",
-};
+export const metadata: Metadata = main_metadata;
 
 export default function RootLayout({
   children,
@@ -22,6 +17,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta
+          name="google-site-verification"
+          content="googlea264a916086e83a6"
+        />
+        <Script
+          type="application/ld+json"
+          id="jsonld"
+          dangerouslySetInnerHTML={metaJson()}
+        />
+      </head>
+
       <body
         className={` ${nunito.variable} ${montserrat.variable} ${euclide.variable} antialiased`}
       >

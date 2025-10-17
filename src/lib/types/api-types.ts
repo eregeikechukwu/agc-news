@@ -22,6 +22,7 @@ export interface Story {
   story?: MainStory;
   category?: Category;
   content?: string;
+  updated_at?: string;
 
   // [key: string]: string | number; // allow flexibility in case backend sends extra fields
 }
@@ -69,6 +70,8 @@ export interface Category {
   slug?: string;
   description?: string;
   image_url?: string;
+  created_at?: string;
+  updated_at?: string;
   // [key: string]: string; //
 }
 
